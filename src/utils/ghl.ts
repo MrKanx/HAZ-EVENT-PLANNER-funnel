@@ -1,4 +1,4 @@
-const GHL_WEBHOOK = import.meta.env.VITE_WEBHOOK_TRACKING ?? 'https://services.leadconnectorhq.com/hooks/AIfaQhtY6ww2dKc5xq8r/webhook-trigger/EHeiuQ0FuekJ68p7JWbd'
+const GHL_WEBHOOK = import.meta.env.VITE_WEBHOOK_REGISTRO ?? 'https://services.leadconnectorhq.com/hooks/kU4URJgWDNYci1iLXzD8/webhook-trigger/u8Vy6B5d6kw7lZqNjJ9Z'
 
 export function generateEventId(prefix = 'evt'): string {
   return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2)}`
