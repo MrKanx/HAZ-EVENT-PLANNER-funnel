@@ -33,7 +33,7 @@ const isValid = () =>
   form.value.consent
 
 const qualifies = () => {
-  if (form.value.nivel === 'menos-15') return false
+  if (form.value.nivel === 'menos-10') return false
   if (form.value.viaje === 'explorando') return false
   return true
 }
@@ -48,8 +48,8 @@ const handleSubmit = async () => {
   const scheduleEventId = generateEventId('schedule')
 
   const nivelLabel: Record<string, string> = {
-    'menos-15': 'Menos de 15',
-    '15-50': '15 a 50',
+    'menos-10': 'Menos de 10',
+    '10-50': '10 a 50',
     '51-100': '51 a 100',
     'mas-100': 'Más de 100',
   }
@@ -193,8 +193,8 @@ watch(() => props.open, (v) => {
               </legend>
               <div class="cal-options">
                 <label v-for="opt in [
-                  { value: 'menos-15', label: 'Menos de 15' },
-                  { value: '15-50', label: '15 a 50' },
+                  { value: 'menos-10', label: 'Menos de 10' },
+                  { value: '10-50', label: '10 a 50' },
                   { value: '51-100', label: '51 a 100' },
                   { value: 'mas-100', label: 'Más de 100' },
                 ]" :key="opt.value" class="cal-option" :class="{ selected: form.nivel === opt.value }">
