@@ -18,7 +18,7 @@ onMounted(() => {
 
       <main class="privacy-card__content">
         <p class="privacy-card__text">
-          En <strong>EAT</strong>, valoramos su privacidad. Los datos personales que nos proporciona (como nombre, correo electrónico y número de teléfono) se recopilan con la única finalidad de gestionar sus solicitudes de contacto, programar su sesión de evaluación de proyecto y enviarle comunicaciones relacionadas con nuestros servicios.
+          En <strong>Haz Event Planner</strong>, valoramos su privacidad. Los datos personales que nos proporciona (como nombre, correo electrónico y número de teléfono) se recopilan con la única finalidad de gestionar sus solicitudes de contacto, programar su sesión de evaluación de proyecto y enviarle comunicaciones relacionadas con nuestros servicios.
         </p>
         <p class="privacy-card__text">
           Nos comprometemos a no vender, compartir ni transferir su información personal a terceros, excepto en los casos en que la ley así lo exija.

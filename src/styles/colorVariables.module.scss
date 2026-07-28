@@ -1,38 +1,50 @@
-// EAT Corporate Food Colors (Pastel Theme)
-$EAT-DARK:        #4A4A4A; // Dark Slate Text
-$EAT-ACCENT:      #FFB7B2; // Pastel Peach / Orange
-$EAT-WHITE:       #FFFFFF; // Clarity (Surfaces)
-$EAT-GRAY-LIGHT:  #F9FAFB; // Off-White (Backgrounds)
-$EAT-GRAY-DARK:   #E5E7EB; // Light Borders
-$EAT-PRIMARY:     #B5EAD7; // Pastel Green
+// Haz Event Planner Brand Colors (extracted from official @hazeventplanner brand identity)
+$HAZ-DARK:           #0E110E; // Luxury Dark Background
+$HAZ-SURFACE:        #171B17; // Dark Olive-Charcoal Card Surface
+$HAZ-SURFACE-LIGHT:  #212621; // Elevated Surface (Inputs, Modals)
+$HAZ-OLIVE:          #5A6746; // Official Haz Olive Green
+$HAZ-OLIVE-LIGHT:    #6F7F58; // Soft Olive Highlight
+$HAZ-GOLD:           #D6C28B; // Official Haz Champagne Gold
+$HAZ-GOLD-LIGHT:     #E8D7A7; // Soft Gold Glow
+$HAZ-GOLD-DARK:      #B8A26A; // Deep Gold Accent
+$HAZ-TEXT:           #F4F5F0; // Cream/White Primary Text
+$HAZ-TEXT-MUTED:     #9EAA8E; // Soft Sage Secondary Text
 
 // S2M Aliases for backward compatibility
-$S2M-DARK-BLUE:   $EAT-DARK;
-$S2M-GOLD:        $EAT-ACCENT;
-$S2M-WHITE:       $EAT-WHITE;
-$S2M-GRAY-LIGHT:  $EAT-GRAY-LIGHT;
-$S2M-GRAY-DARK:   $EAT-GRAY-DARK;
-$S2M-ACCENT:      $EAT-PRIMARY;
+$S2M-DARK-BLUE:   $HAZ-OLIVE;
+$S2M-GOLD:        $HAZ-GOLD;
+$S2M-WHITE:       $HAZ-SURFACE;
+$S2M-GRAY-LIGHT:  $HAZ-DARK;
+$S2M-GRAY-DARK:   $HAZ-SURFACE-LIGHT;
+$S2M-ACCENT:      $HAZ-OLIVE-LIGHT;
 
-// Mapeo a las variables del sistema (manteniendo los nombres para no romper UI legacy de ser necesario)
-$QS-NAVY:    $EAT-DARK;       // Text/Brand
-$QS-BLUE:    $EAT-PRIMARY;    // Secundario
-$QS-GOLD:    $EAT-ACCENT;     // Acento
-$QS-RED:     $EAT-ACCENT;     // CTAs
-$QS-DARK:    $EAT-DARK;       // Texto principal
-$QS-LIGHT:   $EAT-GRAY-LIGHT; // Fondo principal
-$QS-SURFACE: $EAT-WHITE;      // Superficies/cards claras
+// System Mappings (replaces legacy pastel palette with Haz Event Planner luxury dark theme)
+$EAT-DARK:        $HAZ-TEXT;
+$EAT-ACCENT:      $HAZ-GOLD;
+$EAT-WHITE:       $HAZ-SURFACE;
+$EAT-GRAY-LIGHT:  $HAZ-DARK;
+$EAT-GRAY-DARK:   rgba(214, 194, 139, 0.15);
+$EAT-PRIMARY:     $HAZ-OLIVE;
 
-// Urgency / inmediatez
-$QS-URGENT:        #B45309; // Amber-700
-$QS-URGENT-DARK:   #78350F; // Amber-900
-$QS-URGENT-LIGHT:  #F59E0B; // Amber-500
-$QS-URGENT-BG:     rgba(#B45309, 0.15);
+// Mapeo a las variables del sistema
+$QS-NAVY:    $HAZ-OLIVE;        // Primary Brand
+$QS-BLUE:    $HAZ-OLIVE-LIGHT;  // Secondary Brand
+$QS-GOLD:    $HAZ-GOLD;         // Accent Gold
+$QS-RED:     $HAZ-GOLD;         // CTAs
+$QS-DARK:    $HAZ-TEXT;         // Texto principal
+$QS-LIGHT:   $HAZ-DARK;         // Fondo principal
+$QS-SURFACE: $HAZ-SURFACE;      // Superficies/cards oscuras
 
-// Aliases legacy Aluvicopp (mantienen compatibilidad)
+// Urgency / inmediatez (Gold warm glow)
+$QS-URGENT:        $HAZ-GOLD-DARK;
+$QS-URGENT-DARK:   #786438;
+$QS-URGENT-LIGHT:  $HAZ-GOLD-LIGHT;
+$QS-URGENT-BG:     rgba(214, 194, 139, 0.15);
+
+// Aliases legacy Aluvicopp
 $ALU-NAVY:    $QS-NAVY;
 $ALU-BLUE:    $QS-BLUE;
-$ALU-SILVER:  #8E9CB2;
+$ALU-SILVER:  $HAZ-TEXT-MUTED;
 $ALU-RED:     $QS-RED;
 $ALU-DARK:    $QS-DARK;
 $ALU-LIGHT:   $QS-LIGHT;
@@ -42,44 +54,45 @@ $ALU-URGENT-DARK:   $QS-URGENT-DARK;
 $ALU-URGENT-LIGHT:  $QS-URGENT-LIGHT;
 $ALU-URGENT-BG:     $QS-URGENT-BG;
 
-// Aliases legacy Bakano (mantienen compatibilidad — no usar para código nuevo)
-$BAKANO-PINK:   $QS-NAVY;
+// Aliases legacy Bakano
+$BAKANO-PINK:   $QS-GOLD;
 $BAKANO-DARK:   $QS-DARK;
 $BAKANO-LIGHT:  $QS-LIGHT;
 $BAKANO-PURPLE: $QS-BLUE;
-$BAKANO-GREEN:  #8E9CB2;
+$BAKANO-GREEN:  $HAZ-OLIVE;
 $BAKANO-PRIMARY: $QS-NAVY;
 
-// Aliases legacy Ale Barreto (mantienen compatibilidad)
-$AB-WOOD:     #8E9CB2;
+// Aliases legacy Ale Barreto
+$AB-WOOD:     $HAZ-TEXT-MUTED;
 $AB-EARTH:    $QS-BLUE;
 $AB-FOREST:   $QS-NAVY;
-$AB-SAGE:     #8E9CB2;
+$AB-SAGE:     $HAZ-OLIVE;
 $AB-CREAM:    $QS-LIGHT;
-$AB-WHITE:    #ffffff;
+$AB-WHITE:    $HAZ-TEXT;
 $AB-URGENT:        $QS-URGENT;
 $AB-URGENT-DARK:   $QS-URGENT-DARK;
 $AB-URGENT-LIGHT:  $QS-URGENT-LIGHT;
 $AB-URGENT-BG:     $QS-URGENT-BG;
 
-// OS Aliases (para mantener compatibilidad con código existente)
-$OS-RED:   $QS-RED;
-$OS-NAVY:  $QS-NAVY;
-$OS-BLUE:  $QS-BLUE;
+// OS Aliases
+$OS-RED:   $QS-GOLD;
+$OS-NAVY:  $HAZ-OLIVE;
+$OS-BLUE:  $HAZ-OLIVE-LIGHT;
 $OS-DARK:  $QS-DARK;
 
 // Colores base
 $white: #ffffff;
-$text-light: $EAT-DARK; // Mantenemos el nombre pero invertimos el uso para texto
-$overlay-wood: rgba($EAT-ACCENT, 0.05);
+$text-light: $HAZ-TEXT;
+$overlay-wood: rgba($HAZ-GOLD, 0.05);
 
 // Colores adicionales para UI
-$gray-100: #f8f9fa;
-$gray-200: #e9ecef;
-$gray-300: #dee2e6;
-$gray-400: #ced4da;
-$gray-500: #adb5bd;
-$gray-600: #6c757d;
-$gray-700: #495057;
-$gray-800: #343a40;
-$gray-900: #212529;
+$gray-100: #1a1e1a;
+$gray-200: #222722;
+$gray-300: #2e352e;
+$gray-400: #4a544a;
+$gray-500: #7a887a;
+$gray-600: #9eaa8e;
+$gray-700: #c5d0b7;
+$gray-800: #e2e8da;
+$gray-900: #f4f5f0;
+

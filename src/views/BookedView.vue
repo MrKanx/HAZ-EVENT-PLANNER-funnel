@@ -24,6 +24,7 @@ const isReturningVisitor = computed(() => {
 })
 
 onMounted(() => {
+  document.body.style.backgroundColor = '#0E110E'
   const alreadyFired = sessionStorage.getItem('os_complete_fired')
   if (!alreadyFired) {
     ; (window as any).fbq?.('track', 'CompleteRegistration', {
@@ -39,17 +40,17 @@ const nextSteps = [
   {
     icon: 'fa-solid fa-envelope',
     title: 'Revisa tu email',
-    body: 'Te enviamos la confirmación con todos los detalles de tu sesión de asesoría.',
+    body: 'Te enviamos la confirmación con todos los detalles de tu Cita Estratégica.',
   },
   {
     icon: 'fa-brands fa-whatsapp',
-    title: 'Tu diagnóstico gratuito con EAT está agendado',
-    body: 'El equipo de EAT te escribirá para confirmar la cita y enviarte el enlace o coordinar la visita.',
+    title: 'Tu Cita Estratégica está agendada',
+    body: 'El equipo de Haz Event Planner te escribirá por WhatsApp para coordinar la visita a Casa del Río o la sesión de planificación.',
   },
   {
     icon: 'fa-solid fa-file-invoice',
-    title: 'Prepara tus dudas',
-    body: 'Anota todas las preguntas sobre tu proyecto, espacios o presupuesto para aprovecharlas en la sesión.',
+    title: 'Prepara tus ideas e inquietudes',
+    body: 'Anota todas las preguntas sobre tu fecha, invitados o visión del evento para aprovecharlas al máximo en la sesión.',
   },
 ]
 </script>
@@ -58,7 +59,7 @@ const nextSteps = [
   <div class="booked">
 
     <header class="booked__topbar">
-      <span class="booked__logo-text">E<span class="booked__logo-accent">AT</span></span>
+      <span class="booked__logo-text">HAZ <span class="booked__logo-accent">EVENT PLANNER</span></span>
     </header>
 
     <main class="booked__main">
@@ -75,15 +76,15 @@ const nextSteps = [
           </p>
           <h1 class="booked__hero-title">
             <template v-if="contactName">
-              {{ contactName }}, ya tenemos tu asesoría agendada
+              {{ contactName }}, ya tenemos tu Cita Estratégica agendada
             </template>
             <template v-else>
-              Ya tenemos tu asesoría agendada
+              Ya tenemos tu Cita Estratégica agendada
             </template>
           </h1>
           <p class="booked__hero-subtitle">
-            Tu diagnóstico inicial con EAT está confirmado. Revisa tu correo
-            para los detalles. Te contactaremos pronto para confirmar tu asistencia.
+            Tu sesión de Diagnóstico y Planificación de Timing Operativo con Haz Event Planner está confirmada.
+            Revisa tu correo para los detalles y te contactaremos pronto por WhatsApp.
           </p>
         </template>
 
@@ -93,12 +94,12 @@ const nextSteps = [
               ¡Listo, {{ contactName }}!
             </template>
             <template v-else>
-              ¡Tu asesoría está confirmada!
+              ¡Tu Cita Estratégica está confirmada!
             </template>
           </h1>
           <p class="booked__hero-subtitle">
-            Tu sesión con el equipo de EAT ha sido agendada correctamente.
-            Revisa tu correo para más información y te escribiremos para confirmar.
+            Tu sesión con Gabriel Gutiérrez y el equipo de Haz Event Planner ha sido agendada correctamente.
+            Revisa tu correo para más información y coordinar el Timing de tu evento.
           </p>
         </template>
       </section>
@@ -124,7 +125,7 @@ const nextSteps = [
         <RouterLink to="/politicas-privacidad">Política de Privacidad</RouterLink>
         <RouterLink to="/aviso-legal">Aviso Legal</RouterLink>
       </nav>
-      <p class="booked__footer-copy">© {{ new Date().getFullYear() }} EAT. Todos los derechos reservados.</p>
+      <p class="booked__footer-copy">© {{ new Date().getFullYear() }} Haz Event Planner. Todos los derechos reservados.</p>
       <p class="booked__footer-dev">Hecho por <a href="https://github.com/MrKanx" target="_blank" rel="noopener noreferrer">Kankox</a></p>
     </footer>
 

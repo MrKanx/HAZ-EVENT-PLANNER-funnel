@@ -33,8 +33,7 @@ const isValid = () =>
   form.value.consent
 
 const qualifies = () => {
-  if (form.value.nivel === 'menos-10') return false
-  if (form.value.viaje === 'explorando') return false
+  if (form.value.presupuesto === 'opcion-barata') return false
   return true
 }
 
@@ -47,47 +46,29 @@ const handleSubmit = async () => {
   const califica = qualifies()
   const scheduleEventId = generateEventId('schedule')
 
-  const nivelLabel: Record<string, string> = {
-    'menos-10': 'Menos de 10',
-    '10-50': '10 a 50',
-    '51-100': '51 a 100',
-    'mas-100': 'Más de 100',
-  }
-  const viajeLabel: Record<string, string> = {
-    inmediato: 'Lo antes posible',
-    'mes-proximo': 'En el próximo mes',
-    explorando: 'Solo explorando',
-  }
-  const presupuestoLabel: Record<string, string> = {
-    catering: 'Catering / Viandas en serie',
-    individual: 'Cada colaborador busca',
-    comedor: 'Comedor interno',
-    'primera-vez': 'Primera vez',
-  }
-
   const etiquetas = [
-    'funnel-eat',
+    'funnel-haz-event-planner',
     'step-2-cualificacion',
-    califica ? 'califica-eat' : 'no-califica-eat',
-    `tipo-${form.value.nivel}`,
-    `inicio-${form.value.viaje}`,
-    `gestion-${form.value.presupuesto}`,
+    califica ? 'califica-haz' : 'no-califica-haz',
+    `evento-${form.value.nivel}`,
+    `locacion-${form.value.viaje}`,
+    `perfil-${form.value.presupuesto}`,
   ]
 
   const notas = `
 ━━━━━━━━━━━━━━━━━━━━━━━━
-EAT — Cualificación
+Haz Event Planner — Cualificación
 ━━━━━━━━━━━━━━━━━━━━━━━━
 👤 ${contact.nombre} ${contact.apellido}
 📧 ${contact.email}
 📱 ${contact.telefono}
 ━━━━━━━━━━━━━━━━━━━━━━━━
-👥 Personal: ${form.value.nivel}
-⏱️ Urgencia: ${form.value.viaje}
-🍲 Gestión Actual: ${form.value.presupuesto}
-💡 Desafío: ${form.value.reto}
+🎉 Tipo de Evento: ${form.value.nivel}
+🏰 Locación: ${form.value.viaje}
+💎 Enfoque/Servicio: ${form.value.presupuesto}
+💡 Detalles/Reto: ${form.value.reto}
 ━━━━━━━━━━━━━━━━━━━━━━━━
-${califica ? '✅ CALIFICA' : '❌ NO CALIFICA — Falta de personal'}
+${califica ? '✅ CALIFICA — Busca evento blindado 360°' : '❌ NO CALIFICA — Busca opción más barata/informal'}
   `.trim()
 
   const pageEntry = Number(sessionStorage.getItem('alu_page_entry')) || Date.now()
@@ -102,10 +83,10 @@ ${califica ? '✅ CALIFICA' : '❌ NO CALIFICA — Falta de personal'}
     telefono: contact.telefono,
     phone: contact.telefono,
     paso: '2-cualificacion',
-    nivel: form.value.nivel,
-    viaje: form.value.viaje,
-    presupuesto: form.value.presupuesto,
-    reto: form.value.reto,
+    tipoEvento: form.value.nivel,
+    locacion: form.value.viaje,
+    perfil: form.value.presupuesto,
+    detalles: form.value.reto,
     cualifica: califica ? 'true' : 'false',
     etiquetas: etiquetasStr,
     tags: etiquetasStr,
@@ -174,29 +155,29 @@ watch(() => props.open, (v) => {
 
           <div class="cal-header">
             <div class="cal-header-icon" aria-hidden="true">
-              <i class="fa-solid fa-hard-hat"></i>
+              <i class="fa-solid fa-champagne-glasses"></i>
             </div>
             <h2 id="cal-title" class="cal-title">
               Antes de agendar, cuéntanos sobre
-              <span class="cal-accent">tu equipo</span>
+              <span class="cal-accent">tu evento</span>
             </h2>
-            <p class="cal-subtitle">4 breves preguntas para preparar tu diagnóstico corporativo.</p>
+            <p class="cal-subtitle">4 preguntas clave para preparar tu Diagnóstico y Planificación de Timing.</p>
           </div>
 
           <form class="cal-form" @submit.prevent="handleSubmit" novalidate>
 
-            <!-- Q1 — Nivel -->
+            <!-- Q1 — Tipo de evento -->
             <fieldset class="cal-fieldset" :class="{ 'has-error': touched && !form.nivel }">
               <legend class="cal-legend">
                 <span class="cal-q-num">01</span>
-                ¿Cuántos colaboradores trabajan presencialmente?
+                ¿Qué tipo de celebración estás planificando?
               </legend>
               <div class="cal-options">
                 <label v-for="opt in [
-                  { value: 'menos-10', label: 'Menos de 10' },
-                  { value: '10-50', label: '10 a 50' },
-                  { value: '51-100', label: '51 a 100' },
-                  { value: 'mas-100', label: 'Más de 100' },
+                  { value: 'boda', label: 'Boda / Matrimonio' },
+                  { value: 'quince', label: 'Fiesta de Quinceaños' },
+                  { value: 'corporativo', label: 'Evento Corporativo / Graduación' },
+                  { value: 'otro', label: 'Otro Evento Social' },
                 ]" :key="opt.value" class="cal-option" :class="{ selected: form.nivel === opt.value }">
                   <input type="radio" :value="opt.value" v-model="form.nivel" hidden />
                   <span class="cal-option__radio" aria-hidden="true" />
@@ -206,17 +187,17 @@ watch(() => props.open, (v) => {
               <span v-if="touched && !form.nivel" class="cal-error">Selecciona una opción</span>
             </fieldset>
 
-            <!-- Q2 — Viaje -->
+            <!-- Q2 — Locación -->
             <fieldset class="cal-fieldset" :class="{ 'has-error': touched && !form.viaje }">
               <legend class="cal-legend">
                 <span class="cal-q-num">02</span>
-                ¿Con qué urgencia buscan implementar la solución?
+                ¿Dónde te gustaría realizar tu evento?
               </legend>
               <div class="cal-options">
                 <label v-for="opt in [
-                  { value: 'inmediato', label: 'Lo antes posible' },
-                  { value: 'mes-proximo', label: 'En el próximo mes' },
-                  { value: 'explorando', label: 'Solo estoy explorando por ahora' },
+                  { value: 'casa-del-rio', label: 'En el salón Casa del Río (Av. Narcisa de Jesús)' },
+                  { value: 'externa', label: 'En otra locación externa en Guayaquil' },
+                  { value: 'buscando', label: 'Aún estoy evaluando locaciones' },
                 ]" :key="opt.value" class="cal-option" :class="{ selected: form.viaje === opt.value }">
                   <input type="radio" :value="opt.value" v-model="form.viaje" hidden />
                   <span class="cal-option__radio" aria-hidden="true" />
@@ -226,44 +207,42 @@ watch(() => props.open, (v) => {
               <span v-if="touched && !form.viaje" class="cal-error">Selecciona una opción</span>
             </fieldset>
 
-            <!-- Q3 — Presupuesto -->
-            <fieldset class="cal-fieldset cal-fieldset--budget" :class="{ 'has-error': touched && !form.presupuesto, 'has-investment': form.presupuesto && form.presupuesto !== 'no' }">
+            <!-- Q3 — Perfil de servicio -->
+            <fieldset class="cal-fieldset cal-fieldset--budget" :class="{ 'has-error': touched && !form.presupuesto, 'has-investment': form.presupuesto && form.presupuesto === 'integral-360' }">
               <legend class="cal-legend cal-legend--budget">
                 <span class="cal-q-num cal-q-num--budget">03</span>
-                <span>¿Cómo gestionan actualmente la alimentación?</span>
-                <i class="fa-solid fa-utensils cal-legend-chart" aria-hidden="true"></i>
+                <span>¿Qué buscas para el día de tu evento?</span>
+                <i class="fa-solid fa-gem cal-legend-chart" aria-hidden="true"></i>
               </legend>
               <div class="cal-options">
                 <label v-for="opt in [
-                  { value: 'catering', label: 'Catering tradicional / Viandas en serie', premium: true },
-                  { value: 'individual', label: 'Cada colaborador busca su comida', premium: false },
-                  { value: 'comedor', label: 'Contamos con un comedor / buffet interno', premium: true },
-                  { value: 'primera-vez', label: 'Buscamos implementarlo por primera vez', premium: false },
+                  { value: 'integral-360', label: 'Producción Integral 360°, prestigio y paz mental total', premium: true },
+                  { value: 'opcion-barata', label: 'La opción más barata del mercado sacrificando calidad', premium: false },
                 ]" :key="opt.value" class="cal-option" :class="{
                   selected: form.presupuesto === opt.value,
                   'cal-option--premium': opt.premium && form.presupuesto === opt.value,
-                  'cal-option--low': opt.value === 'no' && form.presupuesto === 'no',
+                  'cal-option--low': opt.value === 'opcion-barata' && form.presupuesto === 'opcion-barata',
                   'cal-option--premium-hover': opt.premium && form.presupuesto !== opt.value,
                 }">
                   <input type="radio" :value="opt.value" v-model="form.presupuesto" hidden />
                   <span class="cal-option__radio" aria-hidden="true" />
-                  <i v-if="opt.premium" class="fa-solid fa-gem cal-option__gem" aria-hidden="true"></i>
+                  <i v-if="opt.premium" class="fa-solid fa-shield-halved cal-option__gem" aria-hidden="true"></i>
                   <span class="cal-option__label">{{ opt.label }}</span>
                 </label>
               </div>
-              <span v-if="touched && !form.presupuesto" class="cal-error">Selecciona un rango</span>
+              <span v-if="touched && !form.presupuesto" class="cal-error">Selecciona una opción</span>
             </fieldset>
 
-            <!-- Q4 — Reto -->
+            <!-- Q4 — Detalles -->
             <fieldset class="cal-fieldset" :class="{ 'has-error': touched && wordCount(form.reto) < 5 }">
               <legend class="cal-legend">
                 <span class="cal-q-num">04</span>
-                ¿Cuál es el principal problema que enfrentan actualmente?
+                Cuéntanos sobre tu evento (invitados estimados, fecha o prioridades)
               </legend>
               <textarea
                 v-model="form.reto"
                 class="cal-textarea"
-                placeholder="Ej: Tengo quejas por la comida fría, o tenemos casos de intolerancias y alergias no atendidas..."
+                placeholder="Ej: Buscamos una boda para 100 personas en Casa del Río a finales de este año, con música en vivo..."
                 rows="4"
                 aria-describedby="q4-hint"
               ></textarea>
@@ -271,7 +250,7 @@ watch(() => props.open, (v) => {
                 {{ wordCount(form.reto) }}/5 palabras mínimo
               </span>
               <span v-if="touched && wordCount(form.reto) < 5" class="cal-error">
-                Describe tu desafío con al menos 5 palabras
+                Describe tus expectativas con al menos 5 palabras
               </span>
             </fieldset>
 
@@ -280,7 +259,7 @@ watch(() => props.open, (v) => {
               <input type="checkbox" v-model="form.consent" />
               <span class="cal-consent__box" aria-hidden="true" />
               <span class="cal-consent__text">
-                Acepto que EAT me contacte para agendar mi diagnóstico corporativo.
+                Acepto que Haz Event Planner me contacte para agendar mi Cita Estratégica.
               </span>
             </label>
             <span v-if="touched && !form.consent" class="cal-error">Debes aceptar para continuar</span>

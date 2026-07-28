@@ -17,8 +17,8 @@ const closeModal = () => {
 onMounted(() => {
   sessionStorage.setItem('alu_page_entry', String(Date.now()))
   
-  // Clean up any other bg
-  document.body.style.backgroundColor = '#F9FAFB'
+  // Luxury Dark Theme for Haz Event Planner
+  document.body.style.backgroundColor = '#0E110E'
 })
 </script>
 
@@ -29,30 +29,30 @@ onMounted(() => {
       <!-- HEADER -->
       <header class="funnel__header">
         <div class="funnel__logo-wrap">
-          <span class="funnel__logo-text">E<span class="funnel__logo-accent">AT</span></span>
+          <span class="funnel__logo-text">HAZ <span class="funnel__logo-accent">EVENT PLANNER</span></span>
         </div>
       </header>
 
       <!-- HERO -->
       <section class="funnel__hero">
         <h1 class="funnel__headline">
-          Alimentar a gran escala debería motivar a tu equipo, <span class="funnel__headline-accent">no ser un gasto que tolerar</span>
+          ¿El día de tu evento será la noche de tus sueños... <span class="funnel__headline-accent">o un caos logístico de 7 proveedores?</span>
         </h1>
         
         <p class="funnel__hero-sub">
-          Descubre cómo el método Corporate Food Flow transforma el almuerzo en tu empresa con sabor a hogar, reduciendo el desperdicio y eliminando las quejas del personal.
+          Descubre el Método de Sincronización Operativa 360° de Haz Event Planner y vive tu celebración en Casa del Río o en tu locación ideal sin levantar un solo dedo.
         </p>
 
         <div class="funnel__content-grid">
           <!-- Text/Bullets first -->
           <div class="funnel__bullets-column">
             <div class="funnel__bullets-box">
-              <p class="funnel__bullets-title">Nuestro Método en 3 Pasos:</p>
+              <p class="funnel__bullets-title">El Ecosistema Operativo 360°:</p>
               <ul class="funnel__bullets">
-                <li><i class="fa-solid fa-circle-check"></i> <strong>Mapeo Biológico:</strong> Identificamos restricciones médicas y dietas de tu personal.</li>
-                <li><i class="fa-solid fa-circle-check"></i> <strong>Menú Adaptativo:</strong> Comida tipo buffet, completa y balanceada, con sabor a hogar.</li>
-                <li><i class="fa-solid fa-circle-check"></i> <strong>Control Térmico y Cero Desperdicio:</strong> Optimizamos la cadena logística, reduciendo hasta un 35% el desperdicio.</li>
-                <li><i class="fa-solid fa-circle-check"></i> <strong>Beneficio Real:</strong> Transforma la comida en un beneficio que tu gente sí valora.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Experiencia Casa del Río:</strong> Exclusivo salón en Av. Narcisa de Jesús (hasta 120 personas) o traslado del blindaje logístico a la locación que elijas.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Centralización Artística & Gastronómica:</strong> Alta cocina, decoración conceptual, iluminación/pantallas LED y La Clave Band con show de saxofonista bajo un solo mando.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Ingeniería Invisible del Timing:</strong> Distribución acústica perfecta, control eléctrico de potencia y cronograma al minuto.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Paz Mental Absoluta:</strong> Congelamos tu presupuesto y asumimos la responsabilidad total para que tú solo disfrutes.</li>
               </ul>
             </div>
           </div>
@@ -66,7 +66,7 @@ onMounted(() => {
                 </button>
                 <span class="funnel__vsl-msg">Haz clic para ver el video gratis</span>
               </div>
-              <img src="https://fast.wistia.com/embed/medias/c0iw8b7y8t/swatch" class="funnel__vsl-thumb" alt="Video de la metodología" />
+              <img src="https://fast.wistia.com/embed/medias/bivr0yu5qp/swatch" class="funnel__vsl-thumb" alt="Video del Método de Sincronización Operativa 360" />
             </div>
 
             <button class="funnel__cta" @click="openModal">
@@ -83,22 +83,22 @@ onMounted(() => {
 
       <!-- STATS SECTION -->
       <section class="funnel__stats">
-        <p class="funnel__stats-eyebrow">UN RESPALDO QUE SE DEMUESTRA CON RESULTADOS</p>
+        <p class="funnel__stats-eyebrow">UN ESTÁNDAR QUE VIVIMOS CADA FIN DE SEMANA</p>
         <div class="funnel__stats-grid">
           <div class="funnel__stats-card">
-            <div class="funnel__stats-icon"><i class="fa-solid fa-house-circle-check"></i></div>
-            <h3 class="funnel__stats-number">-35%</h3>
-            <p class="funnel__stats-text">de reducción en desperdicio de comida corporativa</p>
+            <div class="funnel__stats-icon"><i class="fa-solid fa-house-chimney-window"></i></div>
+            <h3 class="funnel__stats-number">120</h3>
+            <p class="funnel__stats-text">invitados (capacidad perfecta en el salón Casa del Río)</p>
           </div>
           <div class="funnel__stats-card">
-            <div class="funnel__stats-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
-            <h3 class="funnel__stats-number">98%</h3>
-            <p class="funnel__stats-text">de satisfacción interna en los colaboradores</p>
+            <div class="funnel__stats-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <h3 class="funnel__stats-number">360°</h3>
+            <p class="funnel__stats-text">de producción integral centralizada bajo un mismo equipo</p>
           </div>
           <div class="funnel__stats-card">
-            <div class="funnel__stats-icon"><i class="fa-solid fa-star"></i></div>
-            <h3 class="funnel__stats-number">0</h3>
-            <p class="funnel__stats-text">ausentismo vespertino por malestar estomacal</p>
+            <div class="funnel__stats-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3 class="funnel__stats-number">100%</h3>
+            <p class="funnel__stats-text">tranquilidad y blindaje operativo sin recargos ni sorpresas</p>
           </div>
         </div>
       </section>
@@ -112,11 +112,11 @@ onMounted(() => {
             </div>
           </div>
           <div class="funnel__authority-content">
-            <p class="funnel__authority-eyebrow">Fundadora de EAT</p>
-            <h2 id="authority-heading" class="funnel__authority-name">Sol Triviño</h2>
-            <p class="funnel__authority-role">CEO</p>
+            <p class="funnel__authority-eyebrow">Fundador de Haz Event Planner</p>
+            <h2 id="authority-heading" class="funnel__authority-name">Gabriel Gutiérrez</h2>
+            <p class="funnel__authority-role">Ingeniero Comercial & Especialista en Organización de Eventos</p>
             <p class="funnel__authority-bio">
-              En EAT sabemos que la alimentación del personal es mucho más que un trámite logístico. Entregar viandas monótonas a tu equipo es una fuga de dinero. <strong>Nuestro objetivo es convertir el almuerzo en ingeniería de bienestar, dando a tu gente nutrición real y sabor de hogar.</strong>
+              Entendí que el mercado estaba roto: los planners tradicionales no tenían la fuerza técnica para controlar la infraestructura y los técnicos no entendían de emociones. Por eso creamos un ecosistema de producción integral 360°. <strong>"No te vendemos las partes de un carro... te entregamos el carro funcionando con absoluta precisión técnica."</strong>
             </p>
           </div>
         </div>
@@ -125,14 +125,14 @@ onMounted(() => {
       <!-- FINAL CTA -->
       <section class="funnel__final-cta">
         <div class="funnel__logo-wrap funnel__logo-wrap--large">
-          <span class="funnel__logo-text">E<span class="funnel__logo-accent">AT</span></span>
+          <span class="funnel__logo-text">HAZ <span class="funnel__logo-accent">EVENT PLANNER</span></span>
         </div>
         <h2 class="funnel__final-title">
-          ¿Listo para eliminar las quejas y<br>
-          <span class="funnel__final-accent">motivar a tu equipo?</span>
+          ¿Listo para transformar los nervios en<br>
+          <span class="funnel__final-accent">la noche más inolvidable de tu vida?</span>
         </h2>
         <p class="funnel__final-sub">
-          Accede al video gratuito donde te explicamos por qué nuestro método Corporate Food Flow es la opción más segura para proteger tu inversión en bienestar.<br><br>
+          Accede al video gratuito y agenda tu sesión de Diagnóstico y Planificación de Timing Operativo sin ningún costo. Analizaremos tu fecha y visitaremos Casa del Río o evaluaremos tu locación ideal.<br><br>
         </p>
         <button class="funnel__cta funnel__cta--pulse" @click="openModal">
           <i class="fa-solid fa-video"></i>
@@ -156,7 +156,7 @@ onMounted(() => {
         <RouterLink to="/politicas-privacidad">Política de Privacidad</RouterLink>
         <RouterLink to="/aviso-legal">Aviso Legal</RouterLink>
       </nav>
-      <p class="funnel__footer-copy">© {{ new Date().getFullYear() }} EAT. Todos los derechos reservados.</p>
+      <p class="funnel__footer-copy">© {{ new Date().getFullYear() }} Haz Event Planner. Todos los derechos reservados.</p>
       <p class="funnel__footer-dev">Hecho por <a href="https://github.com/MrKanx" target="_blank" rel="noopener noreferrer">Kankox</a></p>
     </footer>
 
@@ -223,7 +223,7 @@ onMounted(() => {
 
 .funnel__hero-sub {
   font-size: 1.1rem;
-  color: #4B5563; /* Tailwind gray-600 */
+  color: #9EAA8E;
   max-width: 700px;
   margin: 0 auto 2.5rem;
   line-height: 1.5;
@@ -255,18 +255,19 @@ onMounted(() => {
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-  border: 1px solid rgba(0,0,0,0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  border: 1px solid rgba(214, 194, 139, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 25px 50px rgba(colors.$S2M-GOLD, 0.15);
+    box-shadow: 0 25px 50px rgba(colors.$S2M-GOLD, 0.2);
+    border-color: colors.$S2M-GOLD;
 
     .funnel__play-btn {
       transform: scale(1.1);
       background: colors.$S2M-GOLD;
-      color: #000;
+      color: #0E110E;
     }
   }
 }
@@ -292,7 +293,7 @@ onMounted(() => {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.8);
+  background: rgba(23, 27, 23, 0.85);
   backdrop-filter: blur(4px);
   border: 2px solid colors.$S2M-GOLD;
   color: colors.$S2M-GOLD;
@@ -309,19 +310,20 @@ onMounted(() => {
   font-family: fonts.$font-interface;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #fff;
+  color: colors.$QS-DARK;
   letter-spacing: 1px;
   text-transform: uppercase;
-  background: rgba(0,0,0,0.6);
+  background: rgba(14, 17, 14, 0.8);
   padding: 4px 12px;
   border-radius: 20px;
+  border: 1px solid rgba(214, 194, 139, 0.3);
 }
 
 .funnel__cta {
   margin-top: 2rem;
   width: 100%;
   background: colors.$S2M-GOLD;
-  color: colors.$QS-SURFACE;
+  color: #0E110E;
   font-family: fonts.$font-accent;
   font-size: 1.1rem;
   font-weight: 800;
@@ -334,18 +336,19 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  box-shadow: 0 10px 20px rgba(colors.$S2M-GOLD, 0.2);
+  box-shadow: 0 10px 20px rgba(colors.$S2M-GOLD, 0.25);
   transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(colors.$S2M-GOLD, 0.4);
-    background: #FFD25B;
+    box-shadow: 0 15px 30px rgba(colors.$S2M-GOLD, 0.45);
+    background: #E8D7A7;
   }
 }
 
 .funnel__cta--pulse {
-  background: linear-gradient(90deg, #D49A1E 0%, #FFD25B 100%);
+  background: linear-gradient(90deg, #B8A26A 0%, #E8D7A7 100%);
+  color: #0E110E;
   margin-top: 2.5rem;
   max-width: 450px;
   margin-left: auto;
@@ -368,7 +371,7 @@ onMounted(() => {
 .funnel__guarantee {
   margin-top: 1rem;
   font-size: 0.75rem;
-  color: #6B7280;
+  color: #9EAA8E;
   font-family: fonts.$font-interface;
   display: flex;
   align-items: center;
@@ -382,18 +385,18 @@ onMounted(() => {
 
 .funnel__bullets-box {
   background: colors.$QS-SURFACE;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(214, 194, 139, 0.2);
   border-radius: 12px;
   padding: 2rem;
   height: 100%;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .funnel__bullets-title {
   font-family: fonts.$font-interface;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #6B7280;
+  color: #9EAA8E;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0 0 1.5rem;
@@ -427,8 +430,8 @@ onMounted(() => {
 .funnel__stats {
   margin-top: 6rem;
   padding: 3rem 0;
-  border-top: 1px solid rgba(0,0,0,0.05);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(214, 194, 139, 0.15);
+  border-bottom: 1px solid rgba(214, 194, 139, 0.15);
 }
 
 .funnel__stats-eyebrow {
@@ -454,16 +457,16 @@ onMounted(() => {
 
 .funnel__stats-card {
   background: colors.$QS-SURFACE;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(214, 194, 139, 0.15);
   border-radius: 16px;
   padding: 2rem 1.5rem;
   text-align: center;
-  transition: transform 0.3s;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  transition: transform 0.3s, border-color 0.3s;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 
   &:hover {
     transform: translateY(-5px);
-    border-color: rgba(colors.$S2M-GOLD, 0.3);
+    border-color: rgba(colors.$S2M-GOLD, 0.5);
   }
 }
 
@@ -471,7 +474,8 @@ onMounted(() => {
   width: 50px;
   height: 50px;
   margin: 0 auto 1rem;
-  background: rgba(colors.$S2M-GOLD, 0.1);
+  background: rgba(90, 103, 70, 0.3);
+  border: 1px solid rgba(214, 194, 139, 0.3);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -493,7 +497,7 @@ onMounted(() => {
 
 .funnel__stats-text {
   font-size: 0.95rem;
-  color: #4B5563;
+  color: #9EAA8E;
   margin: 0;
   line-height: 1.5;
 }
@@ -503,9 +507,9 @@ onMounted(() => {
   margin-top: 5rem;
   padding: 2.5rem;
   background: colors.$QS-SURFACE;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(214, 194, 139, 0.2);
   border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
 .funnel__authority-inner {
@@ -523,9 +527,9 @@ onMounted(() => {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 3px solid rgba(0,0,0,0.05);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  background: colors.$QS-LIGHT;
+  border: 3px solid rgba(214, 194, 139, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  background: #5A6746;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -554,18 +558,18 @@ onMounted(() => {
 
 .funnel__authority-role {
   font-size: 0.9rem;
-  color: #6B7280;
+  color: #9EAA8E;
   margin: 0 0 1rem;
 }
 
 .funnel__authority-bio {
   font-size: 0.95rem;
-  color: #4B5563;
+  color: #D0D7C5;
   line-height: 1.6;
   margin: 0;
 
   strong {
-    color: colors.$QS-DARK;
+    color: colors.$S2M-GOLD;
   }
 }
 
@@ -575,7 +579,7 @@ onMounted(() => {
   margin-bottom: 4rem;
   text-align: center;
   padding: 4rem 2rem;
-  background: radial-gradient(circle at center, rgba(colors.$S2M-GOLD, 0.05) 0%, transparent 60%);
+  background: radial-gradient(circle at center, rgba(214, 194, 139, 0.08) 0%, transparent 70%);
 }
 
 .funnel__logo-wrap--large {
@@ -602,7 +606,7 @@ onMounted(() => {
 
 .funnel__final-sub {
   font-size: 1.1rem;
-  color: #4B5563;
+  color: #9EAA8E;
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -612,7 +616,7 @@ onMounted(() => {
 .funnel__footer {
   width: 100%;
   padding: 2rem;
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(214, 194, 139, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -626,7 +630,7 @@ onMounted(() => {
 
   a {
     font-size: 0.8rem;
-    color: #6B7280;
+    color: #9EAA8E;
     text-decoration: none;
 
     &:hover {
@@ -637,17 +641,17 @@ onMounted(() => {
 
 .funnel__footer-copy {
   font-size: 0.75rem;
-  color: #9CA3AF;
+  color: #6E7E56;
   margin: 0;
 }
 
 .funnel__footer-dev {
   font-size: 0.75rem;
-  color: #9CA3AF;
+  color: #6E7E56;
   margin: 0;
   
   a {
-    color: #6B7280;
+    color: #9EAA8E;
     text-decoration: none;
     font-weight: bold;
     

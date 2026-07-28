@@ -14,6 +14,7 @@ const contactName = computed(() => {
 })
 
 onMounted(() => {
+  document.body.style.backgroundColor = '#0E110E'
   const osDisqAt = localStorage.getItem('os_disq_at')
   if (osDisqAt) {
     const elapsed = Date.now() - Number(osDisqAt)
@@ -29,7 +30,7 @@ onMounted(() => {
   <div class="nospace">
 
     <header class="nospace__topbar">
-      <span class="nospace__logo-text">E<span class="nospace__logo-accent">AT</span></span>
+      <span class="nospace__logo-text">HAZ <span class="nospace__logo-accent">EVENT PLANNER</span></span>
     </header>
 
     <main class="nospace__main">
@@ -39,7 +40,7 @@ onMounted(() => {
         <span>
           <template v-if="contactName">{{ contactName }}, podrás</template>
           <template v-else>Podrás</template>
-          volver y solicitar un nuevo diagnóstico en
+          volver y solicitar una nueva Cita Estratégica en
           <strong>{{ hoursLeft }} hora{{ hoursLeft !== 1 ? 's' : '' }}</strong>
         </span>
       </div>
@@ -50,27 +51,25 @@ onMounted(() => {
         </div>
 
         <h1 class="nospace__title">
-          Lo sentimos, nuestros cupos<br>
-          de EAT están completos.
+          Lo sentimos, nuestros cupos de eventos<br>
+          en Casa del Río y exteriores están completos.
         </h1>
 
         <p class="nospace__body">
-          Cuando se libere un espacio, podrás agendar tu diagnóstico corporativo
-          sin costo.
+          Por cuestiones de calidad y exclusividad, aceptamos un número estrictamente limitado de celebraciones al mes. En cuanto se libere una fecha, podrás agendar tu Cita Estratégica sin costo.
         </p>
 
         <div class="nospace__divider" aria-hidden="true"></div>
 
         <h2 class="nospace__subtitle">Mientras tanto</h2>
         <p class="nospace__body">
-          Mientras esperas, te recomendamos preparar información sobre tu flujo alimentario actual y
-          cualquier duda técnica que quieras resolver en tu sesión con nuestro equipo corporativo.
+          Te recomendamos preparar tus inquietudes sobre tu locación (Casa del Río o externa), número de invitados y requerimientos de producción para coordinarlos en cuanto haya disponibilidad.
         </p>
       </div>
 
       <p class="nospace__footer-note">
         <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-        EAT asume un número limitado de cuentas corporativas para asegurar la calidad de nuestro servicio de alimentación. Te notificaremos en cuanto haya disponibilidad.
+        Haz Event Planner mantiene un cupo mensual limitado para garantizar la excelencia en catering, decoración, sistemas audiovisuales y banda en vivo. Te notificaremos en cuanto haya disponibilidad.
       </p>
 
     </main>
@@ -80,7 +79,7 @@ onMounted(() => {
         <RouterLink to="/politicas-privacidad">Política de Privacidad</RouterLink>
         <RouterLink to="/aviso-legal">Aviso Legal</RouterLink>
       </nav>
-      <p class="nospace__footer-copy">© {{ new Date().getFullYear() }} EAT. Todos los derechos reservados.</p>
+      <p class="nospace__footer-copy">© {{ new Date().getFullYear() }} Haz Event Planner. Todos los derechos reservados.</p>
     </footer>
 
   </div>

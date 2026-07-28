@@ -90,29 +90,21 @@ const URGENCY_LABEL: Record<string, string> = {
 
 function buildNotes(): string {
   return [
-    `Proyecto: ${s2.value.projectType}`,
-    `Presupuesto +$1200: ${s2.value.budget === 'yes' ? 'Sí' : 'No'}`,
-    `Objetivo: ${s2.value.objective}`,
+    `Tipo de Evento: ${s2.value.projectType}`,
+    `Locación: ${s2.value.budget}`,
+    `Perfil/Enfoque: ${s2.value.objective}`,
     `Urgencia: ${URGENCY_LABEL[s2.value.urgency] ?? s2.value.urgency}`,
     s2.value.message.trim() ? `Mensaje del lead: ${s2.value.message.trim()}` : null,
-    `Fuente: Formulario Ale Barreto`,
+    `Fuente: Formulario Haz Event Planner`,
   ].filter(Boolean).join('\n')
 }
 
 // ── Lógica de tags ────────────────────────────────────────────────────────────
 function calcTags(): string[] {
-  // "Solo estoy explorando" → descalifica y no es urgente
-  if (s2.value.urgency === 'just-looking') {
-    return ['no-cualificado', 'no-urgente']
+  if (s2.value.objective === 'opcion-barata' || s2.value.urgency === 'just-looking') {
+    return ['no-cualificado-haz', 'no-urgente']
   }
-
-  // El criterio clave es tener 15 o más colaboradores
-  const qualifies = s2.value.projectType !== 'less-15'
-
-  return [
-    qualifies ? 'cualificado' : 'no-cualificado',
-    s2.value.urgency === 'immediate' ? 'urgente' : 'no-urgente',
-  ]
+  return ['cualificado-haz', s2.value.urgency === 'immediate' ? 'urgente' : 'no-urgente']
 }
 
 // ── Envíos ────────────────────────────────────────────────────────────────────
@@ -132,16 +124,14 @@ async function submitS1() {
         email: s1.value.email.trim(),
         phone,
         companyName: s1.value.company.trim(),
-        source: 'bakano-web',
-        tags: ['web-lead'],
+        source: 'haz-event-planner-web',
+        tags: ['web-lead-haz'],
         event_id: regEventId,
         ...getStoredFbParams(),
       }),
     })
-    // Meta Pixel — CompleteRegistration: señal de volumen para el algoritmo
-    // Se dispara para TODO contacto que completa Step 1, sin importar calificación
     ;(window as any).fbq?.('track', 'CompleteRegistration',
-      { content_name: 'contacto-web-bakano', value: 1, currency: 'USD' },
+      { content_name: 'contacto-web-haz', value: 1, currency: 'USD' },
       { eventID: regEventId },
     )
     dir.value = 'fwd'
@@ -166,21 +156,18 @@ async function submitS2() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          // Datos de contacto (Step 1)
           firstName: s1.value.firstName.trim(),
           lastName: s1.value.lastName.trim(),
           email: s1.value.email.trim(),
           phone,
           companyName: s1.value.company.trim(),
-          source: 'eat-web',
-          // Datos de cualificación (Step 2)
-          '1. ¿Cuántos colaboradores?': s2.value.projectType,
-          '2. ¿Cómo gestionan actualmente?': s2.value.budget,
-          '3. ¿Principal problema?': s2.value.objective,
+          source: 'haz-event-planner-web',
+          '1. ¿Tipo de Evento?': s2.value.projectType,
+          '2. ¿Locación?': s2.value.budget,
+          '3. ¿Perfil/Enfoque?': s2.value.objective,
           urgency: s2.value.urgency,
           message: s2.value.message.trim(),
           tags,
-          // Resumen legible para notas
           notes,
         }),
       })
@@ -201,30 +188,27 @@ function goBack() {
 
 // ── Opciones step 2 ───────────────────────────────────────────────────────────
 const projectOpts = [
-  { value: 'less-15', label: 'Menos de 15' },
-  { value: '15-50', label: '15 a 50' },
-  { value: '51-100', label: '51 a 100' },
-  { value: 'more-100', label: 'Más de 100' },
+  { value: 'boda', label: 'Boda / Matrimonio' },
+  { value: 'quince', label: 'Fiesta de Quinceaños' },
+  { value: 'corporativo', label: 'Evento Corporativo / Graduación' },
+  { value: 'otro', label: 'Otro Evento Social' },
 ]
 
 const budgetOpts = [
-  { value: 'catering', label: 'Catering tradicional / Viandas en serie' },
-  { value: 'individual', label: 'Cada colaborador busca su comida' },
-  { value: 'internal', label: 'Contamos con un comedor / buffet interno' },
-  { value: 'first-time', label: 'Buscamos implementarlo por primera vez' },
+  { value: 'casa-del-rio', label: 'En el salón Casa del Río (Av. Narcisa de Jesús)' },
+  { value: 'externa', label: 'En otra locación externa en Guayaquil' },
+  { value: 'buscando', label: 'Aún estoy evaluando locaciones' },
 ]
 
 const objectiveOpts = [
-  { value: 'complaints', label: 'Quejas por comida monótona, fría o sin sabor' },
-  { value: 'allergies', label: 'Falta de personalización (alergias, dietas)' },
-  { value: 'waste', label: 'Desperdicio de presupuesto' },
-  { value: 'logistics', label: 'Problemas logísticos o impuntualidad' },
+  { value: 'integral-360', label: 'Producción 360° y evento blindado sin preocupaciones' },
+  { value: 'opcion-barata', label: 'La opción más barata sacrificando calidad o seguridad' },
 ]
 
 const urgencyOpts = [
-  { value: 'immediate', label: 'Lo antes posible', sub: 'Contacto en menos de 24 h' },
-  { value: 'next-month', label: 'En el próximo mes', sub: 'Estoy evaluando opciones' },
-  { value: 'just-looking', label: 'Solo estoy explorando por ahora', sub: 'Sin urgencia particular' },
+  { value: 'immediate', label: 'Próximos meses', sub: 'Urgencia alta' },
+  { value: 'next-month', label: 'Este año', sub: 'Planificando con tiempo' },
+  { value: 'just-looking', label: 'Solo estoy explorando por ahora', sub: 'Sin fecha definida' },
 ]
 </script>
 
@@ -352,7 +336,7 @@ const urgencyOpts = [
         <!-- Q1: Proyecto -->
         <div class="wf-question">
           <p class="wf-q-num">01</p>
-          <p class="wf-q-title">¿Cuántos colaboradores trabajan presencialmente en tu empresa?</p>
+          <p class="wf-q-title">¿Qué tipo de celebración estás planificando?</p>
           <label
             v-for="opt in projectOpts"
             :key="opt.value"
@@ -365,10 +349,10 @@ const urgencyOpts = [
           </label>
         </div>
 
-        <!-- Q2: Presupuesto -->
+        <!-- Q2: Locación -->
         <div class="wf-question">
           <p class="wf-q-num">02</p>
-          <p class="wf-q-title">¿Cómo gestionan actualmente la alimentación de su personal?</p>
+          <p class="wf-q-title">¿Dónde te gustaría realizar tu evento?</p>
           <label
             v-for="opt in budgetOpts"
             :key="opt.value"
@@ -381,10 +365,10 @@ const urgencyOpts = [
           </label>
         </div>
 
-        <!-- Q3: Objetivo -->
+        <!-- Q3: Enfoque / Perfil -->
         <div class="wf-question">
           <p class="wf-q-num">03</p>
-          <p class="wf-q-title">¿Cuál es el principal problema que enfrentan hoy con los almuerzos?</p>
+          <p class="wf-q-title">¿Qué buscas para el día de tu evento?</p>
           <label
             v-for="opt in objectiveOpts"
             :key="opt.value"
@@ -400,7 +384,7 @@ const urgencyOpts = [
         <!-- Q4: Urgencia -->
         <div class="wf-question">
           <p class="wf-q-num">04</p>
-          <p class="wf-q-title">¿Con qué urgencia buscan implementar o mejorar su sistema de alimentación corporativa?</p>
+          <p class="wf-q-title">¿Con qué anticipación o urgencia buscas realizar tu evento?</p>
           <label
             v-for="opt in urgencyOpts"
             :key="opt.value"
@@ -418,11 +402,11 @@ const urgencyOpts = [
 
         <!-- Mensaje libre -->
         <div class="wf-field">
-          <label class="wf-label">Cuéntanos sobre tu caso <span class="wf-label--opt">(opcional)</span></label>
+          <label class="wf-label">Cuéntanos sobre tu evento <span class="wf-label--opt">(opcional)</span></label>
           <textarea
             v-model="s2.message"
             class="wf-textarea"
-            placeholder="Describe brevemente tu negocio, qué estás buscando o cualquier detalle que nos ayude a entender mejor tu situación…"
+            placeholder="Describe brevemente tus invitados estimados, fecha tentativa o cualquier requerimiento especial…"
             rows="4"
           />
         </div>

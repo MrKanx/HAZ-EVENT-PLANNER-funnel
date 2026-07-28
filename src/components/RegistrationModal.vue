@@ -62,24 +62,24 @@ const form = ref({
 })
 
 const URGENCY_LABEL: Record<Exclude<Urgency, ''>, string> = {
-  inmediato: 'Lo antes posible',
-  proximos: 'En el próximo mes',
-  planificando: 'Buscando opciones',
-  explorando: 'Solo explorando',
+  inmediato: 'Fecha próxima / Urgente',
+  proximos: 'Planificando fecha este año',
+  planificando: 'Buscando locación u opciones',
+  explorando: 'Solo explorando sin fecha fija',
 }
 
 const urgencyOpts: { value: Exclude<Urgency, ''>; label: string; sub: string; hot?: boolean }[] = [
-  { value: 'inmediato',   label: 'Lo antes posible', sub: 'Urgencia alta', hot: true },
-  { value: 'proximos',    label: 'En el próximo mes', sub: 'Planificando pronto' },
-  { value: 'planificando',label: 'Buscando opciones', sub: 'Aún evaluando' },
-  { value: 'explorando',  label: 'Solo estoy explorando', sub: 'Sin urgencia' },
+  { value: 'inmediato',   label: 'Fecha próxima / Urgente', sub: 'En los próximos meses', hot: true },
+  { value: 'proximos',    label: 'Planificando este año', sub: 'Evaluando fechas' },
+  { value: 'planificando',label: 'Buscando locación', sub: 'Casa del Río / Externa' },
+  { value: 'explorando',  label: 'Solo estoy explorando', sub: 'Sin fecha definida' },
 ]
 
 function calcTags(urgency: Urgency): string[] {
-  const base = ['EAT', 'funnel-registro']
-  if (urgency === 'inmediato')    return [...base, 'urgente', 'contrato-inmediato']
-  if (urgency === 'proximos')     return [...base, 'urgencia-media']
-  if (urgency === 'planificando') return [...base, 'planificando']
+  const base = ['haz-event-planner', 'funnel-registro']
+  if (urgency === 'inmediato')    return [...base, 'urgente', 'fecha-proxima']
+  if (urgency === 'proximos')     return [...base, 'planificando-proximo']
+  if (urgency === 'planificando') return [...base, 'buscando-locacion']
   if (urgency === 'explorando')   return [...base, 'no-urgente', 'explorando']
   return base
 }
@@ -89,14 +89,12 @@ function buildNote(f: typeof form.value, country: string, pageDuration: number):
   const secs = pageDuration % 60
   return [
     '━━━━━━━━━━━━━━━━━━━━━━━━',
-    'EAT — Registro Inicial',
+    'Haz Event Planner — Registro Inicial',
     '━━━━━━━━━━━━━━━━━━━━━━━━',
     `👤 ${f.nombre} ${f.apellido}`,
     `📧 ${f.email}`,
+    `🎉 Evento / Organización: ${f.empresa}`,
     `🌎 País: ${country}`,
-    `⏳ Tiempo en página: ${mins}m ${secs}s`,
-    '━━━━━━━━━━━━━━━━━━━━━━━━',
-    '✅ Paso 1 — Registro completado',
     `⏳ Tiempo en página: ${mins}m ${secs}s`,
     '━━━━━━━━━━━━━━━━━━━━━━━━',
     '✅ Paso 1 — Registro completado',
@@ -309,9 +307,9 @@ watch(dropdownOpen, open => {
           </button>
 
           <div class="rmodal__header">
-            <p class="rmodal__eyebrow">CATERING CORPORATIVO</p>
+            <p class="rmodal__eyebrow">PRODUCCIÓN INTEGRAL DE EVENTOS</p>
             <h2 id="rmodal-title" class="rmodal__title">Accede al video<br><span class="rmodal__title-accent">gratuito</span></h2>
-            <p class="rmodal__subtitle">Descubre el Método Corporate Food Flow para tu equipo.</p>
+            <p class="rmodal__subtitle">Descubre el Método de Sincronización Operativa 360° para tu celebración.</p>
           </div>
 
           <form class="rmodal__form" @submit.prevent="handleSubmit" novalidate>
@@ -352,7 +350,7 @@ watch(dropdownOpen, open => {
                 id="r-email"
                 v-model="form.email"
                 type="email"
-                placeholder="juan@empresa.com"
+                placeholder="juan@correo.com"
                 autocomplete="email"
                 @blur="onBlur('email')"
               />
@@ -408,14 +406,14 @@ watch(dropdownOpen, open => {
               </span>
             </div>
 
-            <!-- Empresa / Interés -->
+            <!-- Empresa / Tipo de evento -->
             <div class="rmodal__field" :class="{ 'has-error': touched.empresa && errors.empresa }">
-              <label for="r-empresa">¿Cuál es el nombre de tu empresa?</label>
+              <label for="r-empresa">¿Qué tipo de evento estás planificando?</label>
               <input
                 id="r-empresa"
                 v-model="form.empresa"
                 type="text"
-                placeholder="Ej: Acme Corp..."
+                placeholder="Ej: Boda, Quinceaños, Evento Corporativo, Graduación..."
                 autocomplete="organization"
                 @blur="onBlur('empresa')"
               />
@@ -426,7 +424,7 @@ watch(dropdownOpen, open => {
             <div class="rmodal__field rmodal__field--urgency" :class="{ 'has-error': touched.urgencia && errors.urgencia }">
               <label class="rmodal__urgency-label">
                 <i class="fa-solid fa-clock" aria-hidden="true"></i>
-                ¿Con qué urgencia buscan implementar la solución?
+                ¿Con qué anticipación o urgencia planificas tu evento?
               </label>
               <div class="rmodal__urgency-opts" role="radiogroup">
                 <label

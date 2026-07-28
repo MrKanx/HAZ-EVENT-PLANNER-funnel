@@ -31,14 +31,14 @@ const router = createRouter({
       name: 'funnel',
       component: FunnelView,
       meta: {
-        title: 'EAT | Transforma el almuerzo de tu equipo',
+        title: 'Haz Event Planner | Casa del Río & Eventos 360° en Guayaquil',
         description:
-          'Transformamos tu flujo alimentario con el método Corporate Food Flow. Un solo equipo planifica y ejecuta todo el proceso.',
-        canonical: 'https://eat.com/',
-        ogTitle: 'EAT | Transforma el almuerzo de tu equipo',
+          'Descubre el Método de Sincronización Operativa 360° con Gabriel Gutiérrez. Tu celebración en el exclusivo salón Casa del Río o en tu locación ideal sin estrés.',
+        canonical: 'https://hazeventplanner.com/',
+        ogTitle: 'Haz Event Planner | Casa del Río & Eventos 360°',
         ogDescription:
-          'Transformamos tu flujo alimentario con el método Corporate Food Flow. Un solo equipo planifica y ejecuta todo el proceso.',
-        ogUrl: 'https://eat.com/',
+          'Descubre el Método de Sincronización Operativa 360° con Gabriel Gutiérrez. Tu celebración en el exclusivo salón Casa del Río o en tu locación ideal sin estrés.',
+        ogUrl: 'https://hazeventplanner.com/',
       } satisfies RouteMeta,
     },
     {
@@ -46,12 +46,12 @@ const router = createRouter({
       name: 'video',
       component: VideoView,
       meta: {
-        title: 'Mira el video | EAT — Paso 1 de 2',
-        description: 'Descubre cómo implementar tu sistema de alimentación sin estrés con el método Corporate Food Flow.',
-        canonical: 'https://eat.com/ver-video',
-        ogTitle: 'Mira el video | EAT',
-        ogDescription: 'Ve el video y agenda tu diagnóstico corporativo.',
-        ogUrl: 'https://eat.com/ver-video',
+        title: 'Mira el Video | Haz Event Planner — Paso 1 de 2',
+        description: 'Descubre cómo blindar tu celebración y eliminar el caos logístico con el Método de Sincronización Operativa 360°.',
+        canonical: 'https://hazeventplanner.com/ver-video',
+        ogTitle: 'Mira el Video | Haz Event Planner',
+        ogDescription: 'Ve el video exclusivo y agenda tu Cita Estratégica gratuita.',
+        ogUrl: 'https://hazeventplanner.com/ver-video',
       } satisfies RouteMeta,
     },
     {
@@ -59,12 +59,12 @@ const router = createRouter({
       name: 'booking',
       component: BookingView,
       meta: {
-        title: 'Agenda tu Sesión | EAT — Paso 2 de 2',
-        description: 'Selecciona el día y hora para tu diagnóstico corporativo.',
-        canonical: 'https://eat.com/agendar',
-        ogTitle: 'Agenda tu Sesión | EAT',
-        ogDescription: 'Elige tu horario y reserva tu diagnóstico corporativo.',
-        ogUrl: 'https://eat.com/agendar',
+        title: 'Agenda tu Cita Estratégica | Haz Event Planner — Paso 2 de 2',
+        description: 'Selecciona el día y hora para tu sesión gratuita de Diagnóstico y Planificación de Timing Operativo.',
+        canonical: 'https://hazeventplanner.com/agendar',
+        ogTitle: 'Agenda tu Cita Estratégica | Haz Event Planner',
+        ogDescription: 'Elige tu horario y reserva tu Diagnóstico y Planificación de Timing Operativo.',
+        ogUrl: 'https://hazeventplanner.com/agendar',
       } satisfies RouteMeta,
     },
     {
@@ -72,12 +72,12 @@ const router = createRouter({
       name: 'booked',
       component: BookedView,
       meta: {
-        title: 'Sesión Confirmada | EAT',
-        description: 'Tu diagnóstico con EAT está confirmado. Revisa tu correo.',
-        canonical: 'https://eat.com/cita-confirmada',
-        ogTitle: 'Sesión Confirmada | EAT',
-        ogDescription: 'Tu diagnóstico está reservado. Te contactaremos pronto.',
-        ogUrl: 'https://eat.com/cita-confirmada',
+        title: 'Cita Confirmada | Haz Event Planner',
+        description: 'Tu Cita Estratégica con Gabriel Gutiérrez está confirmada. Revisa tu correo.',
+        canonical: 'https://hazeventplanner.com/cita-confirmada',
+        ogTitle: 'Cita Confirmada | Haz Event Planner',
+        ogDescription: 'Tu Cita Estratégica está reservada. Te contactaremos pronto.',
+        ogUrl: 'https://hazeventplanner.com/cita-confirmada',
       } satisfies RouteMeta,
     },
     {
@@ -85,12 +85,12 @@ const router = createRouter({
       name: 'no-space',
       component: NoSpaceView,
       meta: {
-        title: 'Sin Cupos Disponibles | EAT',
-        description: 'En este momento los cupos para proyectos de EAT están completos.',
-        canonical: 'https://eat.com/sin-espacio',
-        ogTitle: 'Sin Cupos Disponibles | EAT',
-        ogDescription: 'Los cupos para nuevas cuentas corporativas están completos. Te avisaremos cuando haya disponibilidad.',
-        ogUrl: 'https://eat.com/sin-espacio',
+        title: 'Sin Cupos Disponibles | Haz Event Planner',
+        description: 'En este momento las fechas para producciones integrales en Casa del Río y exteriores están completas.',
+        canonical: 'https://hazeventplanner.com/sin-espacio',
+        ogTitle: 'Sin Cupos Disponibles | Haz Event Planner',
+        ogDescription: 'Los cupos para nuevas celebraciones están completos. Te avisaremos en cuanto se libere disponibilidad.',
+        ogUrl: 'https://hazeventplanner.com/sin-espacio',
       } satisfies RouteMeta,
     },
     {
@@ -98,12 +98,12 @@ const router = createRouter({
       name: 'privacy-policy',
       component: PrivacyPolicyView,
       meta: {
-        title: 'Política de Privacidad | EAT',
-        description: 'Política de privacidad de EAT. Información sobre el tratamiento de datos personales.',
-        canonical: 'https://eat.com/politicas-privacidad',
-        ogTitle: 'Política de Privacidad | EAT',
-        ogDescription: 'Política de privacidad de EAT.',
-        ogUrl: 'https://eat.com/politicas-privacidad',
+        title: 'Política de Privacidad | Haz Event Planner',
+        description: 'Política de privacidad de Haz Event Planner. Información sobre el tratamiento de datos personales.',
+        canonical: 'https://hazeventplanner.com/politicas-privacidad',
+        ogTitle: 'Política de Privacidad | Haz Event Planner',
+        ogDescription: 'Política de privacidad de Haz Event Planner.',
+        ogUrl: 'https://hazeventplanner.com/politicas-privacidad',
       } satisfies RouteMeta,
     },
     {
@@ -111,12 +111,12 @@ const router = createRouter({
       name: 'legal-notice',
       component: LegalNoticeView,
       meta: {
-        title: 'Aviso Legal | EAT',
-        description: 'Aviso legal de EAT. Términos y condiciones de uso del sitio web.',
-        canonical: 'https://eat.com/aviso-legal',
-        ogTitle: 'Aviso Legal | EAT',
-        ogDescription: 'Aviso legal de EAT.',
-        ogUrl: 'https://eat.com/aviso-legal',
+        title: 'Aviso Legal | Haz Event Planner',
+        description: 'Aviso legal de Haz Event Planner. Términos y condiciones de uso del sitio web.',
+        canonical: 'https://hazeventplanner.com/aviso-legal',
+        ogTitle: 'Aviso Legal | Haz Event Planner',
+        ogDescription: 'Aviso legal de Haz Event Planner.',
+        ogUrl: 'https://hazeventplanner.com/aviso-legal',
       } satisfies RouteMeta,
     },
   ],
@@ -143,7 +143,7 @@ const setCanonical = (href: string) => {
 
 router.afterEach((to) => {
   const meta = to.meta
-  document.title = meta.title ?? 'EAT'
+  document.title = meta.title ?? 'Haz Event Planner'
   setMeta('description', meta.description ?? '')
   setOgMeta('og:title', meta.ogTitle ?? meta.title ?? '')
   setOgMeta('og:description', meta.ogDescription ?? meta.description ?? '')
@@ -174,27 +174,36 @@ const isFresh = (key: string, ttl: number): boolean => {
 
 const PUBLIC_ROUTES = ['privacy-policy', 'legal-notice']
 
+const isDevEnv = (): boolean => {
+  if (import.meta.env.DEV) return true
+  if (typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname)) {
+    return true
+  }
+  return false
+}
+
 router.beforeEach((to, from, next) => {
   const routeName = to.name as string
   if (PUBLIC_ROUTES.includes(routeName)) return next()
+  if (isDevEnv()) return next()
 
   const bookedFresh = isFresh('os_booked_at', BOOKED_TTL_MS)
   const disqFresh   = isFresh('os_disq_at',   DISQ_TTL_MS)
 
   if (routeName === 'booked') {
-    if (!bookedFresh && !import.meta.env.DEV) return next({ name: 'funnel' })
+    if (!bookedFresh) return next({ name: 'funnel' })
     return next()
   }
 
-  if (bookedFresh && !import.meta.env.DEV) {
+  if (bookedFresh) {
     return next({ name: 'booked' })
   }
 
-  if (disqFresh && ['booking', 'booked'].includes(routeName) && !import.meta.env.DEV) {
+  if (disqFresh && ['booking', 'booked'].includes(routeName)) {
     return next({ name: 'no-space' })
   }
 
-  if (routeName === 'no-space' && !disqFresh && !import.meta.env.DEV) {
+  if (routeName === 'no-space' && !disqFresh) {
     return next({ name: 'funnel' })
   }
 

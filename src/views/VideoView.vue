@@ -53,6 +53,13 @@ const submitCapture = async () => {
   startTimer()
 }
 
+const isDev = ref(false)
+
+const closeCaptureModal = () => {
+  captureOpen.value = false
+  startTimer()
+}
+
 const COUNTDOWN_SECONDS = 120
 const secondsLeft = ref(COUNTDOWN_SECONDS)
 const ctaUnlocked = ref(false)
@@ -82,9 +89,18 @@ const startTimer = () => {
 }
 
 onMounted(() => {
+  document.body.style.backgroundColor = '#0E110E'
+  isDev.value =
+    import.meta.env.DEV ||
+    (typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname))
+
+  if (isDev.value) {
+    ctaUnlocked.value = true
+  }
+
   const c = contactStore.get()
   const hasContact = !!c.email && !!c.nombre
-  if (!hasContact) {
+  if (!hasContact && !isDev.value) {
     captureOpen.value = true
   } else {
     ;(window as any).fbq?.('track', 'ViewContent', { content_name: 'video-vsl' })
@@ -99,7 +115,7 @@ onMounted(() => {
     document.head.appendChild(script1)
     
     const script2 = document.createElement('script')
-    script2.src = 'https://fast.wistia.com/embed/qlg8athp0s.js'
+    script2.src = 'https://fast.wistia.com/embed/bivr0yu5qp.js'
     script2.type = 'module'
     script2.async = true
     document.head.appendChild(script2)
@@ -113,7 +129,7 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
   <div class="vv-page">
 
     <header class="vv-topbar">
-      <span class="vv-topbar__logo-text">E<span class="vv-topbar__logo-accent">AT</span></span>
+      <span class="vv-topbar__logo-text">HAZ <span class="vv-topbar__logo-accent">EVENT PLANNER</span></span>
     </header>
 
     <main class="vv-main">
@@ -128,17 +144,17 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
 
       <section class="vv-headline">
         <h1 class="vv-h1">
-          Transforma el almuerzo de tu equipo de un gasto logístico a una
-          <span class="vv-accent">herramienta estratégica de alto rendimiento</span>
+          Transforma los nervios y la incertidumbre en la noche más elegante y
+          <span class="vv-accent">perfectamente ejecutada de tu vida</span>
         </h1>
         <p class="vv-subtitle">
-          Descubre cómo el método Corporate Food Flow elimina las quejas, reduce el desperdicio y motiva a tus colaboradores con sabor real de hogar.
+          Gabriel Gutiérrez te explica cómo el Método de Sincronización Operativa 360° elimina el caos logístico en Casa del Río o en tu locación ideal.
         </p>
       </section>
 
       <div class="vv-video-wrapper">
         <div class="vv-video-ratio">
-          <wistia-player media-id="c0iw8b7y8t" aspect="1.7777777777777777"></wistia-player>
+          <wistia-player media-id="bivr0yu5qp" aspect="1.7777777777777777"></wistia-player>
         </div>
       </div>
 
@@ -147,7 +163,7 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
           <div class="vv-cta-locked__message">
             <i class="fa-solid fa-lock vv-cta-locked__icon" aria-hidden="true"></i>
             <p class="vv-cta-locked__text">
-              El botón se habilita en <strong>{{ formattedTime() }}</strong> — el video tiene la clave para tu proceso
+              El botón se habilita en <strong>{{ formattedTime() }}</strong> — el video tiene la clave para tu evento
             </p>
           </div>
           <button 
@@ -182,7 +198,7 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
         <RouterLink to="/politicas-privacidad">Política de Privacidad</RouterLink>
         <RouterLink to="/aviso-legal">Aviso Legal</RouterLink>
       </nav>
-      <p class="vv-footer__copy">© {{ new Date().getFullYear() }} EAT. Todos los derechos reservados.</p>
+      <p class="vv-footer__copy">© {{ new Date().getFullYear() }} Haz Event Planner. Todos los derechos reservados.</p>
       <p class="vv-footer__dev">Hecho por <a href="https://github.com/MrKanx" target="_blank" rel="noopener noreferrer">Kankox</a></p>
     </footer>
 
@@ -193,8 +209,11 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
 
   <Teleport to="body">
     <Transition name="capture-fade">
-      <div v-if="captureOpen" class="capture-overlay" role="dialog" aria-modal="true" aria-labelledby="capture-title">
+      <div v-if="captureOpen" class="capture-overlay" @click.self="closeCaptureModal" role="dialog" aria-modal="true" aria-labelledby="capture-title">
         <div class="capture-modal">
+          <button class="capture-modal__close" @click="closeCaptureModal" aria-label="Cerrar modal">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
           <div class="capture-modal__header">
             <h2 id="capture-title" class="capture-modal__title">
               Antes de ver el video, <span>confirma tus datos</span>
@@ -561,18 +580,37 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
 }
 
 .capture-modal {
+  position: relative;
   background: colors.$QS-SURFACE;
   border-radius: 20px;
   width: 100%;
   max-width: 460px;
   overflow: hidden;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(214, 194, 139, 0.25);
+
+  &__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: #9EAA8E;
+    font-size: 1.25rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s, transform 0.2s;
+
+    &:hover {
+      color: colors.$S2M-GOLD;
+      transform: scale(1.1);
+    }
+  }
 
   &__header {
     padding: 2rem 2rem 1.25rem;
     text-align: center;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(214, 194, 139, 0.15);
   }
 
   &__title {

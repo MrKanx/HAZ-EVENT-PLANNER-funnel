@@ -39,6 +39,7 @@ const onMessage = (event: MessageEvent) => {
 }
 
 onMounted(() => {
+  document.body.style.backgroundColor = '#0E110E'
   window.addEventListener('message', onMessage)
 
   if (!document.getElementById('ghl-form-embed-script')) {
@@ -57,7 +58,7 @@ onUnmounted(() => window.removeEventListener('message', onMessage))
   <div class="booking">
 
     <header class="booking__topbar">
-      <span class="booking__logo-text">E<span class="booking__logo-accent">AT</span></span>
+      <span class="booking__logo-text">HAZ <span class="booking__logo-accent">EVENT PLANNER</span></span>
     </header>
 
     <main class="booking__main">
@@ -85,10 +86,10 @@ onUnmounted(() => window.removeEventListener('message', onMessage))
         </p>
         <h1 class="booking__title">
           Elige el horario de tu
-          <span class="booking__title-accent">sesión inicial</span>
+          <span class="booking__title-accent">Cita Estratégica</span>
         </h1>
         <p class="booking__hero-subtitle">
-          Un diagnóstico con el equipo de EAT para conocer tu caso, evaluar tu flujo alimentario y definir cómo implementar un sistema corporativo sin complicaciones.
+          Una sesión de Diagnóstico y Planificación de Timing Operativo gratuita con Gabriel Gutiérrez y el equipo de Haz Event Planner. Analizaremos tu fecha, visitaremos Casa del Río o evaluaremos tu locación ideal.
         </p>
       </section>
 
@@ -96,7 +97,7 @@ onUnmounted(() => window.removeEventListener('message', onMessage))
         <iframe
           :src="calendarUrl"
           :style="{ height: iframeHeight + 'px' }"
-          title="Agenda tu sesión con EAT"
+          title="Agenda tu Cita Estratégica con Haz Event Planner"
           class="calendar__iframe"
           frameborder="0"
           scrolling="no"
@@ -111,7 +112,7 @@ onUnmounted(() => window.removeEventListener('message', onMessage))
         <RouterLink to="/politicas-privacidad">Política de Privacidad</RouterLink>
         <RouterLink to="/aviso-legal">Aviso Legal</RouterLink>
       </nav>
-      <p class="booking__footer-copy">© {{ new Date().getFullYear() }} EAT. Todos los derechos reservados.</p>
+      <p class="booking__footer-copy">© {{ new Date().getFullYear() }} Haz Event Planner. Todos los derechos reservados.</p>
       <p class="booking__footer-dev">Hecho por <a href="https://github.com/MrKanx" target="_blank" rel="noopener noreferrer">Kankox</a></p>
     </footer>
 
