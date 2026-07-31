@@ -6,8 +6,10 @@ import LegalNoticeView from '../views/LegalNoticeView.vue'
 import BookingView from '../views/BookingView.vue'
 import BookedView from '../views/BookedView.vue'
 import NoSpaceView from '../views/NoSpaceView.vue'
+import { captureFbParams } from '@/utils/fbclid'
 
 import 'vue-router'
+
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -183,7 +185,9 @@ const isDevEnv = (): boolean => {
 }
 
 router.beforeEach((to, from, next) => {
+  captureFbParams()
   const routeName = to.name as string
+
   if (PUBLIC_ROUTES.includes(routeName)) return next()
   if (isDevEnv()) return next()
 

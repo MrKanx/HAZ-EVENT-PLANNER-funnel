@@ -11,8 +11,8 @@
     <meta name="author" content="Haz Event Planner">
     <!-- Wistia Scripts -->
     <script src="https://fast.wistia.com/player.js"></script>
-    <script src="https://fast.wistia.com/embed/bivr0yu5qp.js" type="module"></script>
-    <style>wistia-player[media-id='bivr0yu5qp']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/bivr0yu5qp/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style>
+    <script src="https://fast.wistia.com/embed/b6nlwwhjb9.js" type="module"></script>
+    <style>wistia-player[media-id='b6nlwwhjb9']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/b6nlwwhjb9/swatch'); display: block; filter: blur(5px); padding-top:55.94%; }</style>
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="theme-color" content="#0A1628">
     <!-- Favicons -->
@@ -28,8 +28,10 @@
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
     t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '%VITE_PIXEL_ID%');
+    const metaPixelId = '%VITE_PIXEL_ID%'.startsWith('%') ? '2308342313253528' : '%VITE_PIXEL_ID%';
+    fbq('init', metaPixelId);
     fbq('track', 'PageView');
+
     </script>
     <!-- Canonical -->
     <link rel="canonical" href="https://hazeventplanner.com/">

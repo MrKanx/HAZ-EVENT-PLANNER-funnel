@@ -45,35 +45,58 @@ export function captureFbParams(): void {
 
   const existing = getStoredFbParams()
 
-  // Si ya tenemos fbclid y no llegó uno nuevo, conservar todo
-  if (!fbclid && existing.fbclid) return
+  // Si ya tenemos fbclid almacenado y no llegó uno nuevo en la URL, conservar UTMs y refrescar cookies
+  if (!fbclid && existing.fbclid) {
+    existing.fbc = getCookie('_fbc') || existing.fbc || (existing.fbclid ? buildFbc(existing.fbclid) : '')
+    existing.fbp = getCookie('_fbp') || existing.fbp
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(existing))
+    return
+  }
 
   const data: FbParams = {
     fbclid,
-    fbc: fbclid ? buildFbc(fbclid) : getCookie('_fbc'),
+    fbc: getCookie('_fbc') || (fbclid ? buildFbc(fbclid) : ''),
     fbp: getCookie('_fbp'),
-    utm_source:   params.get('utm_source')   ?? '',
-    utm_medium:   params.get('utm_medium')   ?? '',
-    utm_campaign: params.get('utm_campaign') ?? '',
-    utm_content:  params.get('utm_content')  ?? '',
-    utm_term:     params.get('utm_term')     ?? '',
-    utm_id:       params.get('utm_id')       ?? '',
+    utm_source:   params.get('utm_source')   ?? existing.utm_source   ?? '',
+    utm_medium:   params.get('utm_medium')   ?? existing.utm_medium   ?? '',
+    utm_campaign: params.get('utm_campaign') ?? existing.utm_campaign ?? '',
+    utm_content:  params.get('utm_content')  ?? existing.utm_content  ?? '',
+    utm_term:     params.get('utm_term')     ?? existing.utm_term     ?? '',
+    utm_id:       params.get('utm_id')       ?? existing.utm_id       ?? '',
   }
 
   sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data))
 }
 
 /**
- * Retorna todos los parámetros de atribución almacenados en esta sesión.
+ * Retorna todos los parámetros de atribución almacenados en esta sesión,
+ * refrescando _fbc y _fbp si el SDK del Pixel las generó posteriormente.
  */
 export function getStoredFbParams(): FbParams {
-  try {
-    const raw = sessionStorage.getItem(STORAGE_KEY)
-    if (raw) return JSON.parse(raw) as FbParams
-  } catch { /* ignorar */ }
-  return {
+  let params: FbParams = {
     fbclid: '', fbc: '', fbp: '',
     utm_source: '', utm_medium: '', utm_campaign: '',
     utm_content: '', utm_term: '', utm_id: '',
   }
+
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY)
+    if (raw) params = JSON.parse(raw) as FbParams
+  } catch { /* ignorar */ }
+
+  // Refrescar cookies _fbc y _fbp dinámicamente si están disponibles
+  const cookieFbc = getCookie('_fbc')
+  if (cookieFbc) {
+    params.fbc = cookieFbc
+  } else if (!params.fbc && params.fbclid) {
+    params.fbc = buildFbc(params.fbclid)
+  }
+
+  const cookieFbp = getCookie('_fbp')
+  if (cookieFbp) {
+    params.fbp = cookieFbp
+  }
+
+  return params
 }
+

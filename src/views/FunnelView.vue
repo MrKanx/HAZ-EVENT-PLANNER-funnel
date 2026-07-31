@@ -49,11 +49,24 @@ onMounted(() => {
             <div class="funnel__bullets-box">
               <p class="funnel__bullets-title">El Ecosistema Operativo 360°:</p>
               <ul class="funnel__bullets">
-                <li><i class="fa-solid fa-circle-check"></i> <strong>Experiencia Casa del Río:</strong> Exclusivo salón en Av. Narcisa de Jesús (hasta 120 personas) o traslado del blindaje logístico a la locación que elijas.</li>
-                <li><i class="fa-solid fa-circle-check"></i> <strong>Centralización Artística & Gastronómica:</strong> Alta cocina, decoración conceptual, iluminación/pantallas LED y La Clave Band con show de saxofonista bajo un solo mando.</li>
-                <li><i class="fa-solid fa-circle-check"></i> <strong>Ingeniería Invisible del Timing:</strong> Distribución acústica perfecta, control eléctrico de potencia y cronograma al minuto.</li>
-                <li><i class="fa-solid fa-circle-check"></i> <strong>Paz Mental Absoluta:</strong> Congelamos tu presupuesto y asumimos la responsabilidad total para que tú solo disfrutes.</li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div class="funnel__bullet-text"><strong>Experiencia Casa del Río:</strong> Exclusivo salón en Av. Narcisa de Jesús (hasta 120 personas) o traslado del blindaje logístico a la locación que elijas.</div>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div class="funnel__bullet-text"><strong>Centralización Artística & Gastronómica:</strong> Alta cocina, decoración conceptual, iluminación/pantallas LED y La Clave Band con show de saxofonista bajo un solo mando.</div>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div class="funnel__bullet-text"><strong>Ingeniería Invisible del Timing:</strong> Distribución acústica perfecta, control eléctrico de potencia y cronograma al minuto.</div>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div class="funnel__bullet-text"><strong>Paz Mental Absoluta:</strong> Congelamos tu presupuesto y asumimos la responsabilidad total para que tú solo disfrutes.</div>
+                </li>
               </ul>
+
             </div>
           </div>
           
@@ -66,7 +79,8 @@ onMounted(() => {
                 </button>
                 <span class="funnel__vsl-msg">Haz clic para ver el video gratis</span>
               </div>
-              <img src="https://fast.wistia.com/embed/medias/bivr0yu5qp/swatch" class="funnel__vsl-thumb" alt="Video del Método de Sincronización Operativa 360" />
+              <img src="https://fast.wistia.com/embed/medias/b6nlwwhjb9/swatch" class="funnel__vsl-thumb" alt="Video del Método de Sincronización Operativa 360" />
+
             </div>
 
             <button class="funnel__cta" @click="openModal">
@@ -175,27 +189,36 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .funnel__container {
   width: 100%;
   max-width: 1000px;
-  padding: 0 20px;
+  padding: 0 16px;
+  box-sizing: border-box;
   flex: 1;
+  overflow-x: hidden;
+
+  @media (max-width: 480px) {
+    padding: 0 12px;
+  }
 }
 
 .funnel__header {
   display: flex;
   justify-content: center;
-  padding: 2rem 0 1rem;
+  padding: 1.5rem 0 0.75rem;
 }
 
 .funnel__logo-text {
   font-family: fonts.$font-principal;
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
   font-weight: 900;
   color: colors.$QS-DARK;
   letter-spacing: -0.5px;
+  text-align: center;
 }
 
 .funnel__logo-accent {
@@ -204,17 +227,25 @@ onMounted(() => {
 
 .funnel__hero {
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .funnel__headline {
   font-family: fonts.$font-principal;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.4rem, 4.5vw, 3.2rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.2;
   color: colors.$QS-DARK;
   margin-bottom: 1rem;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  @media (max-width: 480px) {
+    font-size: 1.35rem;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
 }
 
 .funnel__headline-accent {
@@ -222,12 +253,80 @@ onMounted(() => {
 }
 
 .funnel__hero-sub {
-  font-size: 1.1rem;
+  font-size: clamp(0.92rem, 2.5vw, 1.1rem);
   color: #9EAA8E;
   max-width: 700px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 2rem;
   line-height: 1.5;
+  overflow-wrap: break-word;
+
+  @media (max-width: 480px) {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
 }
+
+.funnel__bullets-box {
+  background: colors.$QS-SURFACE;
+  border: 1px solid rgba(214, 194, 139, 0.2);
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  height: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-sizing: border-box;
+
+  @media (max-width: 600px) {
+    padding: 1.25rem 1rem;
+  }
+}
+
+.funnel__bullets-title {
+  font-family: fonts.$font-interface;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #9EAA8E;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 1.2rem;
+}
+
+.funnel__bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+
+  li {
+    font-size: 1rem;
+    line-height: 1.45;
+    color: colors.$QS-DARK;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    @media (max-width: 480px) {
+      font-size: 0.88rem;
+      gap: 8px;
+    }
+
+    i {
+      color: colors.$S2M-GOLD;
+      font-size: 1.1rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.funnel__bullet-text {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
 
 .funnel__content-grid {
   display: grid;

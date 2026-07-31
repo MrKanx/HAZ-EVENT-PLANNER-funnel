@@ -38,7 +38,8 @@ Arquitectos de la cadena de suministro — IFAC methodology. Líder: Jefferson B
 - **CalendarModal**: `presupuesto < $3,000 USD/mes` → `/sin-espacio` + guarda `os_disq_at`
 
 ## GHL Calendar
-- URL: `https://api.leadconnectorhq.com/widget/booking/bDoTPmyIA6ng4o5iqD9i`
+- URL: `https://api.leadconnectorhq.com/widget/booking/lKUymQr6CmOu5x6WbT4I`
+
 - Pre-fill params: `?firstName=...&email=...&phone=` (leídos de `os_contact`)
 - Evento de confirmación: `postMessage(['msgsndr-booking-complete', {...}])`
 - Altura dinámica: `postMessage({ type: 'booking-app', height: N })`
@@ -66,7 +67,8 @@ src/
 ```
 
 ## Videos
-- **Wistia media-id `bivr0yu5qp`** — VSL Quick Solutions
+- **Wistia media-id `b6nlwwhjb9`** — VSL Quick Solutions
+
 
 ## Funnel — Contenido Quick Solutions
 - **Headline**: "Profesionaliza tu cadena de suministro y elimina las paradas no programadas con ingeniería de datos"

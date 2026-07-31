@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const iframeHeight = ref(1100)
 
-const BASE_URL = 'https://api.leadconnectorhq.com/widget/booking/ldp9xYyX6UpQ38iToUvF'
+const BASE_URL = 'https://api.leadconnectorhq.com/widget/booking/lKUymQr6CmOu5x6WbT4I'
 
 const calendarUrl = computed(() => {
   try {
@@ -45,7 +45,7 @@ onMounted(() => {
   if (!document.getElementById('ghl-form-embed-script')) {
     const script = document.createElement('script')
     script.id = 'ghl-form-embed-script'
-    script.src = 'https://link.msgsndr.com/js/form_embed.js'
+    script.src = 'https://api.leadconnectorhq.com/js/form_embed.js'
     script.type = 'text/javascript'
     document.body.appendChild(script)
   }
@@ -101,9 +101,11 @@ onUnmounted(() => window.removeEventListener('message', onMessage))
           class="calendar__iframe"
           frameborder="0"
           scrolling="no"
-          id="ldp9xYyX6UpQ38iToUvF_1784050903280"
+          allow="payment"
+          id="lKUymQr6CmOu5x6WbT4I_1785507427916"
         ></iframe>
       </div>
+
 
     </main>
 

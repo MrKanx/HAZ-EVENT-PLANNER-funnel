@@ -204,22 +204,29 @@ const handleSubmit = async () => {
   const pageDur = getPageDuration()
 
   const tags = calcTags(form.value.urgencia)
+  const notesText = buildNote(form.value, selectedCountry.value.name, pageDur)
   const payload = {
     nombre: form.value.nombre.trim(),
     apellido: form.value.apellido.trim(),
+    firstName: form.value.nombre.trim(),
+    lastName: form.value.apellido.trim(),
     email: form.value.email.trim().toLowerCase(),
     telefono: parsedPhoneE164.value,
     phone: parsedPhoneE164.value,
     telefonoDisplay: selectedCountry.value.dial + ' ' + formattedPhone.value,
     empresa: form.value.empresa.trim(),
+    companyName: form.value.empresa.trim(),
     pais: selectedCountry.value.name,
+    country: selectedCountry.value.name,
     urgencia: form.value.urgencia,
     urgenciaLabel: form.value.urgencia ? URGENCY_LABEL[form.value.urgencia] : '',
     paso: '1-registro-inicial',
     etiquetas: tags.join(', '),
-    tags,
-    notas: buildNote(form.value, selectedCountry.value.name, pageDur),
-    nota: buildNote(form.value, selectedCountry.value.name, pageDur),
+    tags: tags.join(', '),
+    tagList: tags,
+    notas: notesText,
+    nota: notesText,
+    notes: notesText,
     pageDuration: pageDur,
     source: 'LINEA-VIVA-web',
     timestamp: new Date().toISOString(),
@@ -229,7 +236,10 @@ const handleSubmit = async () => {
 
   console.info('[LINEA VIVA Registro]', payload)
 
-  const webhookUrl = import.meta.env.VITE_WEBHOOK_REGISTRO ?? 'https://services.leadconnectorhq.com/hooks/kU4URJgWDNYci1iLXzD8/webhook-trigger/u8Vy6B5d6kw7lZqNjJ9Z'
+  const webhookUrl =
+    import.meta.env.VITE_WEBHOOK_REGISTRO ??
+    'https://services.leadconnectorhq.com/hooks/dZiSZokzwuadJfuzW9EK/webhook-trigger/HebSJp0aZcq1P01vdzqV'
+
   await fetch(webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -247,8 +257,10 @@ const handleSubmit = async () => {
     negocio: form.value.empresa.trim(),
     email: form.value.email.trim().toLowerCase(),
     telefono: parsedPhoneE164.value,
+    pais: selectedCountry.value.name,
     timestamp: Date.now(),
   }))
+
   ;(window as any).fbq?.('track', 'CompleteRegistration', {
     content_name: 'registro-inicial',
     value: 1,
@@ -478,11 +490,12 @@ watch(dropdownOpen, open => {
 @use '@/styles/fonts.modules.scss' as fonts;
 
 $bg: colors.$QS-SURFACE;
-$border: rgba(0,0,0, 0.1);
-$input-bg: colors.$QS-LIGHT;
-$text-muted: #6B7280;
-$text-body: #4B5563;
+$border: rgba(214, 194, 139, 0.25);
+$input-bg: #212621;
+$text-muted: #9EAA8E;
+$text-body: #E2E8DA;
 $accent: colors.$S2M-GOLD;
+
 
 .rmodal-overlay {
   position: fixed;
@@ -494,7 +507,7 @@ $accent: colors.$S2M-GOLD;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 12px;
   overflow-y: auto;
 }
 
@@ -509,12 +522,15 @@ $accent: colors.$S2M-GOLD;
   box-shadow: 0 10px 40px rgba(colors.$OS-NAVY, 0.08), 0 40px 100px rgba(colors.$OS-NAVY, 0.12);
   max-height: 92vh;
   overflow-y: auto;
+  box-sizing: border-box;
 
   @media (max-width: 560px) {
-    padding: 44px 20px 32px;
-    border-radius: 20px;
+    padding: 36px 16px 24px;
+    border-radius: 16px;
+    max-height: 95vh;
   }
 }
+
 
 .rmodal__close {
   position: absolute;
@@ -903,13 +919,14 @@ $accent: colors.$S2M-GOLD;
 
 .rmodal__urgency-opt-dot {
   width: 18px; height: 18px; border-radius: 50%;
-  border: 2px solid rgba(0,0,0,0.15); background: colors.$QS-LIGHT; flex-shrink: 0;
+  border: 2px solid rgba(214, 194, 139, 0.4); background: #212621; flex-shrink: 0;
   transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
 
   .rmodal__urgency-opt--sel & {
     border-color: $accent; background: $accent; box-shadow: inset 0 0 0 3px colors.$QS-SURFACE;
   }
 }
+
 
 .rmodal__urgency-opt-text {
   display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0;

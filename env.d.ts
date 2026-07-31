@@ -16,3 +16,14 @@ declare module '*.JPG' {
   const src: string
   export default src
 }
+
+interface ImportMetaEnv {
+  readonly VITE_WEBHOOK_REGISTRO?: string
+  readonly VITE_WEBHOOK_CALIFICACION?: string
+  readonly VITE_PIXEL_ID?: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+

@@ -115,7 +115,7 @@ onMounted(() => {
     document.head.appendChild(script1)
     
     const script2 = document.createElement('script')
-    script2.src = 'https://fast.wistia.com/embed/bivr0yu5qp.js'
+    script2.src = 'https://fast.wistia.com/embed/b6nlwwhjb9.js'
     script2.type = 'module'
     script2.async = true
     document.head.appendChild(script2)
@@ -154,9 +154,10 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
 
       <div class="vv-video-wrapper">
         <div class="vv-video-ratio">
-          <wistia-player media-id="bivr0yu5qp" aspect="1.7777777777777777"></wistia-player>
+          <wistia-player media-id="b6nlwwhjb9" aspect="1.7877094972067038"></wistia-player>
         </div>
       </div>
+
 
       <div class="vv-cta-section">
         <div v-if="!ctaUnlocked" class="vv-cta-locked" aria-live="polite">
@@ -628,7 +629,7 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
 
   &__sub {
     font-size: 0.9rem;
-    color: #4B5563;
+    color: #9EAA8E;
     margin: 0;
   }
 
@@ -664,25 +665,26 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
   }
 
   input {
-    border: 1.5px solid rgba(0,0,0,0.1);
+    border: 1.5px solid rgba(214, 194, 139, 0.25);
     border-radius: 9px;
     padding: 0.8rem 1rem;
     font-family: fonts.$font-secondary;
     font-size: 0.9rem;
-    color: colors.$QS-DARK;
-    background: colors.$QS-LIGHT;
+    color: #F4F5F0;
+    background: #212621;
     outline: none;
     transition: all 0.2s ease;
 
     &::placeholder {
-      color: #9CA3AF;
+      color: #7A887A;
     }
 
     &:focus {
       border-color: colors.$S2M-GOLD;
-      background: colors.$QS-SURFACE;
+      background: #2A312A;
     }
   }
+
 
   &.error input {
     border-color: colors.$OS-RED;

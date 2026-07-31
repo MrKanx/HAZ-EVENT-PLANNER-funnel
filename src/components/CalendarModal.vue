@@ -79,9 +79,15 @@ ${califica ? '✅ CALIFICA — Busca evento blindado 360°' : '❌ NO CALIFICA �
   const payload: Record<string, string> = {
     nombre: contact.nombre,
     apellido: contact.apellido,
+    firstName: contact.nombre,
+    lastName: contact.apellido,
     email: contact.email,
     telefono: contact.telefono,
     phone: contact.telefono,
+    empresa: contact.negocio || '',
+    companyName: contact.negocio || '',
+    pais: (contact as any).pais || '',
+    country: (contact as any).pais || '',
     paso: '2-cualificacion',
     tipoEvento: form.value.nivel,
     locacion: form.value.viaje,
@@ -92,14 +98,19 @@ ${califica ? '✅ CALIFICA — Busca evento blindado 360°' : '❌ NO CALIFICA �
     tags: etiquetasStr,
     notas: notasConTiempo,
     nota: notasConTiempo,
+    notes: notasConTiempo,
     pageDuration: String(pageDuration),
     event_id: scheduleEventId,
     ...getStoredFbParams(),
   }
 
+
   trackStage('cualificacion_completada', payload)
 
-  const webhookUrl = import.meta.env.VITE_WEBHOOK_CALIFICACION ?? 'https://services.leadconnectorhq.com/hooks/kU4URJgWDNYci1iLXzD8/webhook-trigger/yWmEJHsLZ2oDn7PyuT9Y'
+  const webhookUrl =
+    import.meta.env.VITE_WEBHOOK_CALIFICACION ??
+    'https://services.leadconnectorhq.com/hooks/dZiSZokzwuadJfuzW9EK/webhook-trigger/jb4sfXunuAlYJ2wy4Cqo'
+
   await fetch(webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -301,7 +312,7 @@ watch(() => props.open, (v) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.5rem;
   overflow-y: auto;
 }
 
@@ -315,12 +326,17 @@ watch(() => props.open, (v) => {
   position: relative;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(0,0,0,0.05);
+
+  @media (max-width: 500px) {
+    border-radius: 16px;
+    max-height: 95vh;
+  }
 }
 
 .cal-close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.75rem;
+  right: 0.75rem;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -341,7 +357,12 @@ watch(() => props.open, (v) => {
   padding: 2rem 2rem 1.25rem;
   border-bottom: 1px solid rgba(0,0,0,0.05);
   text-align: center;
+
+  @media (max-width: 500px) {
+    padding: 1.25rem 1rem 1rem;
+  }
 }
+
 
 .cal-header-icon {
   width: 52px;
@@ -367,8 +388,8 @@ watch(() => props.open, (v) => {
 .cal-accent { color: colors.$S2M-GOLD; }
 
 .cal-subtitle {
-  font-size: 0.86rem;
-  color: #6B7280;
+  font-size: 0.9rem;
+  color: #9EAA8E;
   margin: 0;
 }
 
@@ -394,8 +415,8 @@ watch(() => props.open, (v) => {
     transition: all 0.25s ease;
 
     &.has-investment {
-      border-color: rgba(colors.$S2M-DARK-BLUE, 0.4);
-      background: rgba(colors.$S2M-DARK-BLUE, 0.1);
+      border-color: rgba(colors.$S2M-GOLD, 0.4);
+      background: rgba(colors.$S2M-GOLD, 0.08);
     }
   }
 }
@@ -405,14 +426,13 @@ watch(() => props.open, (v) => {
   align-items: center;
   gap: 0.5rem;
   font-family: fonts.$font-interface;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 700;
-  color: colors.$QS-DARK;
+  color: #F4F5F0;
   margin-bottom: 0.75rem;
-  background: colors.$QS-SURFACE;
-  padding: 0 0.5rem;
+  background: transparent;
+  padding: 0;
   border-radius: 8px;
-  margin-left: -0.5rem;
 
   &--budget {
     gap: 0.4rem;
@@ -442,10 +462,10 @@ watch(() => props.open, (v) => {
   width: 24px;
   height: 24px;
   border-radius: 6px;
-  background: colors.$S2M-DARK-BLUE;
-  color: colors.$QS-SURFACE;
-  font-size: 0.72rem;
-  font-weight: 800;
+  background: colors.$S2M-GOLD;
+  color: #0E110E;
+  font-size: 0.75rem;
+  font-weight: 900;
   flex-shrink: 0;
 
   &--budget {
@@ -464,36 +484,37 @@ watch(() => props.open, (v) => {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  padding: 0.85rem 1.15rem;
-  border: 1.5px solid rgba(0,0,0,0.1);
+  padding: 0.9rem 1.15rem;
+  border: 1.5px solid rgba(214, 194, 139, 0.25);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: colors.$QS-LIGHT;
+  background: #212621;
 
   &:hover { 
-    border-color: rgba(0,0,0,0.2); 
-    background: colors.$QS-SURFACE; 
+    border-color: colors.$S2M-GOLD; 
+    background: #2A312A; 
     transform: translateY(-1px);
   }
 
   &.selected {
     border-color: colors.$S2M-GOLD;
-    background: rgba(colors.$S2M-GOLD, 0.08);
+    background: rgba(214, 194, 139, 0.15);
+    box-shadow: 0 0 15px rgba(214, 194, 139, 0.2);
   }
 
   &__radio {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 2px solid rgba(0,0,0,0.15);
+    border: 2px solid rgba(214, 194, 139, 0.4);
     flex-shrink: 0;
     position: relative;
     transition: all 0.2s ease;
 
     .cal-option.selected & {
       border-color: colors.$S2M-GOLD;
-      background: rgba(colors.$S2M-GOLD, 0.1);
+      background: rgba(colors.$S2M-GOLD, 0.2);
       &::after {
         content: '';
         position: absolute;
@@ -506,34 +527,35 @@ watch(() => props.open, (v) => {
   }
 
   &__label {
-    font-size: 0.92rem;
-    color: #4B5563;
-    font-weight: 500;
+    font-size: 0.94rem;
+    color: #E2E8DA;
+    font-weight: 600;
     transition: color 0.2s ease;
-    .cal-option.selected & { color: colors.$QS-DARK; font-weight: 600; text-shadow: 0 0 1px rgba(255,255,255,0.3); }
+    .cal-option.selected & { color: #FFFFFF; font-weight: 700; text-shadow: 0 0 4px rgba(214, 194, 139, 0.4); }
   }
 }
 
 .cal-textarea {
   width: 100%;
-  border: 1.5px solid rgba(0,0,0,0.1);
+  border: 1.5px solid rgba(214, 194, 139, 0.25);
   border-radius: 12px;
   padding: 1rem 1.15rem;
   font-family: fonts.$font-secondary;
   font-size: 0.92rem;
-  color: colors.$QS-DARK;
-  background: colors.$QS-LIGHT;
+  color: #F4F5F0;
+  background: #212621;
   resize: vertical;
   outline: none;
   transition: all 0.2s ease;
   line-height: 1.55;
   box-sizing: border-box;
-  &::placeholder { color: #9CA3AF; }
+  &::placeholder { color: #7A887A; }
   &:focus { 
     border-color: colors.$S2M-GOLD; 
-    background: colors.$QS-SURFACE; 
+    background: #2A312A; 
   }
 }
+
 
 .cal-hint {
   display: block;

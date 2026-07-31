@@ -3,8 +3,13 @@ import { ref, computed } from 'vue'
 import { getStoredFbParams } from '@/utils/fbclid'
 
 // ── Webhooks ─────────────────────────────────────────────────────────────────
-const WH_CONTACT = import.meta.env.VITE_WEBHOOK_REGISTRO ?? 'https://services.leadconnectorhq.com/hooks/kU4URJgWDNYci1iLXzD8/webhook-trigger/u8Vy6B5d6kw7lZqNjJ9Z'
-const WH_QUALIFY = import.meta.env.VITE_WEBHOOK_CALIFICACION ?? 'https://services.leadconnectorhq.com/hooks/kU4URJgWDNYci1iLXzD8/webhook-trigger/yWmEJHsLZ2oDn7PyuT9Y'
+const WH_CONTACT =
+  import.meta.env.VITE_WEBHOOK_REGISTRO ??
+  'https://services.leadconnectorhq.com/hooks/dZiSZokzwuadJfuzW9EK/webhook-trigger/HebSJp0aZcq1P01vdzqV'
+const WH_QUALIFY =
+  import.meta.env.VITE_WEBHOOK_CALIFICACION ??
+  'https://services.leadconnectorhq.com/hooks/dZiSZokzwuadJfuzW9EK/webhook-trigger/jb4sfXunuAlYJ2wy4Cqo'
+
 
 defineEmits<{ close: [] }>()
 
@@ -115,17 +120,26 @@ async function submitS1() {
   try {
     const phone = `${s1.value.dial}${s1.value.phone.replace(/\D/g, '')}`
     const regEventId = `reg_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`
+    const countryObj = COUNTRIES.find((c) => c.dial === s1.value.dial)
+    const countryName = countryObj ? countryObj.label : s1.value.dial
     await fetch(WH_CONTACT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        nombre: s1.value.firstName.trim(),
+        apellido: s1.value.lastName.trim(),
         firstName: s1.value.firstName.trim(),
         lastName: s1.value.lastName.trim(),
         email: s1.value.email.trim(),
         phone,
+        telefono: phone,
+        empresa: s1.value.company.trim(),
         companyName: s1.value.company.trim(),
+        pais: countryName,
+        country: countryName,
+        etiquetas: 'web-lead-haz',
+        tags: 'web-lead-haz',
         source: 'haz-event-planner-web',
-        tags: ['web-lead-haz'],
         event_id: regEventId,
         ...getStoredFbParams(),
       }),
@@ -149,29 +163,43 @@ async function submitS2() {
   errMsg.value = ''
   try {
     const tags = calcTags()
+    const tagsStr = tags.join(', ')
     const phone = `${s1.value.dial}${s1.value.phone.replace(/\D/g, '')}`
     const notes = buildNotes()
+    const countryObj = COUNTRIES.find((c) => c.dial === s1.value.dial)
+    const countryName = countryObj ? countryObj.label : s1.value.dial
     if (WH_QUALIFY) {
       await fetch(WH_QUALIFY, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          nombre: s1.value.firstName.trim(),
+          apellido: s1.value.lastName.trim(),
           firstName: s1.value.firstName.trim(),
           lastName: s1.value.lastName.trim(),
           email: s1.value.email.trim(),
           phone,
+          telefono: phone,
+          empresa: s1.value.company.trim(),
           companyName: s1.value.company.trim(),
+          pais: countryName,
+          country: countryName,
           source: 'haz-event-planner-web',
           '1. ¿Tipo de Evento?': s2.value.projectType,
           '2. ¿Locación?': s2.value.budget,
           '3. ¿Perfil/Enfoque?': s2.value.objective,
           urgency: s2.value.urgency,
           message: s2.value.message.trim(),
-          tags,
+          etiquetas: tagsStr,
+          tags: tagsStr,
+          notas: notes,
+          nota: notes,
           notes,
+          ...getStoredFbParams(),
         }),
       })
     }
+
     step.value = 'ok'
   } catch {
     errMsg.value = 'Algo salió mal. Por favor intenta de nuevo.'
