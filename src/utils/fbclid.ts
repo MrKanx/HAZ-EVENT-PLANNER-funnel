@@ -49,7 +49,9 @@ export function captureFbParams(): void {
   if (!fbclid && existing.fbclid) {
     existing.fbc = getCookie('_fbc') || existing.fbc || (existing.fbclid ? buildFbc(existing.fbclid) : '')
     existing.fbp = getCookie('_fbp') || existing.fbp
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(existing))
+    const serialized = JSON.stringify(existing)
+    sessionStorage.setItem(STORAGE_KEY, serialized)
+    localStorage.setItem(STORAGE_KEY, serialized)
     return
   }
 
@@ -65,7 +67,9 @@ export function captureFbParams(): void {
     utm_id:       params.get('utm_id')       ?? existing.utm_id       ?? '',
   }
 
-  sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+  const serialized = JSON.stringify(data)
+  sessionStorage.setItem(STORAGE_KEY, serialized)
+  localStorage.setItem(STORAGE_KEY, serialized)
 }
 
 /**
@@ -80,7 +84,7 @@ export function getStoredFbParams(): FbParams {
   }
 
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY)
+    const raw = sessionStorage.getItem(STORAGE_KEY) || localStorage.getItem(STORAGE_KEY)
     if (raw) params = JSON.parse(raw) as FbParams
   } catch { /* ignorar */ }
 

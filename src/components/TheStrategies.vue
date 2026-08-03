@@ -99,13 +99,13 @@ onUnmounted(() => {
       
       <!-- Header Section -->
       <div class="strategies__header">
-        <p class="strategies__subtitle">METODOLOGÍA LÍNEA VIVA 360</p>
+        <p class="strategies__subtitle">MÉTODO DE SINCRONIZACIÓN OPERATIVA 360°</p>
         <h2 class="strategies__title">
           Un solo equipo,<br>
           <span>Responsable de todo</span>
         </h2>
         <p class="strategies__header-desc">
-          El verdadero problema no es construir o remodelar. El problema es hacerlo con un proceso fragmentado donde el diseñador trabaja por un lado y el constructor por otro. Con <strong>Línea Viva 360</strong>, te devolvemos la tranquilidad.
+          El verdadero problema no es celebrar. El problema es hacerlo con un proceso fragmentado donde el decorador trabaja por un lado, el catering por otro y la música por su cuenta. Con <strong>Haz Event Planner 360°</strong>, te devolvemos la tranquilidad.
         </p>
         
         <div class="strategies__header-cta">
@@ -124,26 +124,26 @@ onUnmounted(() => {
           <div class="step-card__number">01</div>
           <h3 class="step-card__title">Planificación<br>Integral</h3>
           <p class="step-card__desc">
-            Antes de tocar una sola pared, planificamos todo el proyecto en detalle usando principios BIM para detectar y corregir errores en físico, evitando demoliciones o sobrecostos.
+            Antes del gran día, planificamos cada detalle técnico, timing de cocina y acústica con milimétrica precisión, evitando improvisaciones o retrasos.
           </p>
           <ul class="step-card__features">
-            <li><i class="fa-solid fa-check"></i> Diseño Coordinado</li>
+            <li><i class="fa-solid fa-check"></i> Timing Coordinado</li>
             <li><i class="fa-solid fa-check"></i> Cero Improvisaciones</li>
-            <li><i class="fa-solid fa-check"></i> Presupuesto Claro</li>
+            <li><i class="fa-solid fa-check"></i> Presupuesto Congelado</li>
           </ul>
         </div>
 
         <!-- Fase 2 -->
         <div class="step-card">
           <div class="step-card__number">02</div>
-          <h3 class="step-card__title">Organización<br>y Control</h3>
+          <h3 class="step-card__title">Sincronización<br>y Control</h3>
           <p class="step-card__desc">
-            Un solo equipo se encarga de coordinar la obra, controlar tiempos, gestionar presupuesto y asegurar los acabados, para que no tengas que ser el coordinador de tu propia obra.
+            Un solo equipo se encarga de coordinar la locación (Casa del Río o externa), alta cocina, pantallas LED y producción musical para que disfrutes sin preocupaciones.
           </p>
           <ul class="step-card__features">
             <li><i class="fa-solid fa-check"></i> Un Solo Interlocutor</li>
-            <li><i class="fa-solid fa-check"></i> Tiempos Controlados</li>
-            <li><i class="fa-solid fa-check"></i> Tranquilidad Total</li>
+            <li><i class="fa-solid fa-check"></i> Cronograma Perfecto</li>
+            <li><i class="fa-solid fa-check"></i> Paz Mental Total</li>
           </ul>
         </div>
 
@@ -152,12 +152,12 @@ onUnmounted(() => {
           <div class="step-card__number">03</div>
           <h3 class="step-card__title">Ejecución y<br>Garantía</h3>
           <p class="step-card__desc">
-            Llevamos el proyecto a la realidad cuidando cada detalle. Y si aparece algo, lo corregimos. Entregamos un proyecto bien hecho, no solo terminado, y con respaldo real.
+            Llevamos tu celebración a la realidad cuidando cada detalle de la experiencia de tus invitados. Entregamos un evento perfecto y con blindaje absoluto.
           </p>
           <ul class="step-card__features">
             <li><i class="fa-solid fa-check"></i> Ejecución Impecable</li>
-            <li><i class="fa-solid fa-check"></i> Acabados de Alto Nivel</li>
-            <li><i class="fa-solid fa-check"></i> Respaldo y Garantía</li>
+            <li><i class="fa-solid fa-check"></i> Servicio de Alto Nivel</li>
+            <li><i class="fa-solid fa-check"></i> Respaldo 360°</li>
           </ul>
         </div>
 
@@ -167,11 +167,11 @@ onUnmounted(() => {
       <div class="strategies__footer">
         <div class="cta-banner">
           <div class="cta-banner__content">
-            <h3 class="cta-banner__title">¿Listo para construir o remodelar sin complicaciones?</h3>
-            <p class="cta-banner__desc">Agenda tu sesión y descubre cómo Línea Viva 360 puede hacer tu proyecto realidad.</p>
+            <h3 class="cta-banner__title">¿Listo para vivir tu evento sin preocupaciones?</h3>
+            <p class="cta-banner__desc">Agenda tu sesión y descubre cómo Haz Event Planner 360° hace tu celebración realidad.</p>
           </div>
           <button class="btn-primary-massive" @click="scrollToContact">
-            <span>EMPEZAR MI PROYECTO</span>
+            <span>EMPEZAR MI PLANIFICACIÓN</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
         </div>

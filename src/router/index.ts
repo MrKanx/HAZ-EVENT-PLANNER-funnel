@@ -153,6 +153,10 @@ router.afterEach((to) => {
   setOgMeta('twitter:title', meta.ogTitle ?? meta.title ?? '')
   setOgMeta('twitter:description', meta.ogDescription ?? meta.description ?? '')
   setCanonical(meta.canonical ?? '')
+
+  if (typeof (window as any).fbq === 'function') {
+    ;(window as any).fbq('track', 'PageView')
+  }
 })
 
 // ── Router Guards ──────────────────────────────────────────────────────────────

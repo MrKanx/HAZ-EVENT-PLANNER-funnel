@@ -470,7 +470,7 @@ onMounted(() => {
 .funnel__guarantee {
   margin-top: 1rem;
   font-size: 0.75rem;
-  color: #9EAA8E;
+  color: colors.$HAZ-TEXT-MUTED;
   font-family: fonts.$font-interface;
   display: flex;
   align-items: center;
@@ -484,7 +484,7 @@ onMounted(() => {
 
 .funnel__bullets-box {
   background: colors.$QS-SURFACE;
-  border: 1px solid rgba(214, 194, 139, 0.2);
+  border: 1px solid rgba(229, 193, 88, 0.25);
   border-radius: 12px;
   padding: 2rem;
   height: 100%;
@@ -495,7 +495,7 @@ onMounted(() => {
   font-family: fonts.$font-interface;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #9EAA8E;
+  color: colors.$HAZ-TEXT-MUTED;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0 0 1.5rem;
@@ -596,7 +596,7 @@ onMounted(() => {
 
 .funnel__stats-text {
   font-size: 0.95rem;
-  color: #9EAA8E;
+  color: colors.$HAZ-TEXT-MUTED;
   margin: 0;
   line-height: 1.5;
 }
@@ -606,7 +606,7 @@ onMounted(() => {
   margin-top: 5rem;
   padding: 2.5rem;
   background: colors.$QS-SURFACE;
-  border: 1px solid rgba(214, 194, 139, 0.2);
+  border: 1px solid rgba(229, 193, 88, 0.25);
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
@@ -626,9 +626,9 @@ onMounted(() => {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 3px solid rgba(214, 194, 139, 0.3);
+  border: 3px solid rgba(229, 193, 88, 0.35);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  background: #5A6746;
+  background: colors.$HAZ-OLIVE;
   display: flex;
   align-items: center;
   justify-content: center;

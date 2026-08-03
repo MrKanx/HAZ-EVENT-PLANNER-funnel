@@ -1,14 +1,14 @@
-// Haz Event Planner Brand Colors (extracted from official @hazeventplanner brand identity)
-$HAZ-DARK:           #0E110E; // Luxury Dark Background
-$HAZ-SURFACE:        #171B17; // Dark Olive-Charcoal Card Surface
-$HAZ-SURFACE-LIGHT:  #212621; // Elevated Surface (Inputs, Modals)
-$HAZ-OLIVE:          #5A6746; // Official Haz Olive Green
-$HAZ-OLIVE-LIGHT:    #6F7F58; // Soft Olive Highlight
-$HAZ-GOLD:           #D6C28B; // Official Haz Champagne Gold
-$HAZ-GOLD-LIGHT:     #E8D7A7; // Soft Gold Glow
-$HAZ-GOLD-DARK:      #B8A26A; // Deep Gold Accent
-$HAZ-TEXT:           #F4F5F0; // Cream/White Primary Text
-$HAZ-TEXT-MUTED:     #9EAA8E; // Soft Sage Secondary Text
+// Haz Event Planner Brand Colors (vivid, high-contrast, luminous luxury palette)
+$HAZ-DARK:           #0B0F0C; // Deep Obsidian Luxury Dark
+$HAZ-SURFACE:        #141A15; // Rich Dark Surface
+$HAZ-SURFACE-LIGHT:  #1E2720; // Elevated Input/Card Surface
+$HAZ-OLIVE:          #2A7244; // Vibrant Emerald-Olive (High contrast & lively)
+$HAZ-OLIVE-LIGHT:    #3C8E58; // Bright Emerald Accent
+$HAZ-GOLD:           #E5C158; // Luminous Champagne Gold
+$HAZ-GOLD-LIGHT:     #F6E8B8; // Soft Gold Glow
+$HAZ-GOLD-DARK:      #D49D35; // Rich Deep Gold Accent
+$HAZ-TEXT:           #FFFFFF; // Crisp White Primary Text
+$HAZ-TEXT-MUTED:     #CBD5C0; // High-Visibility Bright Secondary Text
 
 // S2M Aliases for backward compatibility
 $S2M-DARK-BLUE:   $HAZ-OLIVE;
@@ -23,7 +23,7 @@ $EAT-DARK:        $HAZ-TEXT;
 $EAT-ACCENT:      $HAZ-GOLD;
 $EAT-WHITE:       $HAZ-SURFACE;
 $EAT-GRAY-LIGHT:  $HAZ-DARK;
-$EAT-GRAY-DARK:   rgba(214, 194, 139, 0.15);
+$EAT-GRAY-DARK:   rgba(229, 193, 88, 0.18);
 $EAT-PRIMARY:     $HAZ-OLIVE;
 
 // Mapeo a las variables del sistema
@@ -36,10 +36,10 @@ $QS-LIGHT:   $HAZ-DARK;         // Fondo principal
 $QS-SURFACE: $HAZ-SURFACE;      // Superficies/cards oscuras
 
 // Urgency / inmediatez (Gold warm glow)
-$QS-URGENT:        $HAZ-GOLD-DARK;
-$QS-URGENT-DARK:   #786438;
+$QS-URGENT:        $HAZ-GOLD;
+$QS-URGENT-DARK:   $HAZ-GOLD-DARK;
 $QS-URGENT-LIGHT:  $HAZ-GOLD-LIGHT;
-$QS-URGENT-BG:     rgba(214, 194, 139, 0.15);
+$QS-URGENT-BG:     rgba(229, 193, 88, 0.18);
 
 // Aliases legacy Aluvicopp
 $ALU-NAVY:    $QS-NAVY;

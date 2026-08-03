@@ -228,13 +228,13 @@ const handleSubmit = async () => {
     nota: notesText,
     notes: notesText,
     pageDuration: pageDur,
-    source: 'LINEA-VIVA-web',
+    source: 'HAZ-EVENT-PLANNER-web',
     timestamp: new Date().toISOString(),
     event_id: leadEventId,
     ...getStoredFbParams(),
   }
 
-  console.info('[LINEA VIVA Registro]', payload)
+  console.info('[HAZ EVENT PLANNER Registro]', payload)
 
   const webhookUrl =
     import.meta.env.VITE_WEBHOOK_REGISTRO ??

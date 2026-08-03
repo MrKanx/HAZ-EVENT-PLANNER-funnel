@@ -29,27 +29,27 @@ const hProgress        = ref(0)      // 0–1 progreso del track horizontal
 
 // Estadísticas que rotan
 const stats = [
-  { number: '15+', label: 'Años de Experiencia' },
-  { number: '500+', label: 'Proyectos Entregados' },
-  { number: '100%', label: 'Madera Certificada' },
-  { number: '24/7', label: 'Asesoría Técnica' }
+  { number: '120', label: 'Capacidad Casa del Río' },
+  { number: '360°', label: 'Producción Integral' },
+  { number: '100%', label: 'Blindaje Logístico' },
+  { number: '24/7', label: 'Acompañamiento VIP' }
 ]
 
 const benefits = [
   {
     icon: 'fa-solid fa-compass-drafting',
-    title: '1. Planificación (BIM)',
-    description: 'Entendemos y planificamos todo en detalle antes de tocar una sola pared, evitando sobrecostos.'
+    title: '1. Planificación Timing 360°',
+    description: 'Diseñamos e ingeniamos cada minuto del evento antes del gran día, asegurando cero imprprevistos.'
   },
   {
     icon: 'fa-solid fa-users-gear',
-    title: '2. Organización y Control',
-    description: 'Un solo equipo responsable de coordinar la obra, el presupuesto y los acabados. Cero estrés para ti.'
+    title: '2. Sincronización Operativa',
+    description: 'Un solo equipo profesional coordinando locación, gastronomía, música y logística bajo un mando único.'
   },
   {
     icon: 'fa-solid fa-handshake-angle',
-    title: '3. Ejecución con Respaldo',
-    description: 'Llevamos el proyecto a la realidad con garantía total incluso después de la entrega final.'
+    title: '3. Celebración Impecable',
+    description: 'Hacemos tu evento realidad con respaldo total para que disfrutes tu gran día sin ningún estrés.'
   }
 ]
 
@@ -162,7 +162,7 @@ const { open: openContactModal } = useContactModal()
           <!-- Logo Textual Sutil (Se oculta al hacer zoom) -->
           <div class="cube-logo">
             <svg viewBox="0 0 350 100" class="cube-logo__svg">
-              <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-size="42" font-weight="900" letter-spacing="2">LÍNEA VIVA</text>
+              <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-size="28" font-weight="900" letter-spacing="2">HAZ EVENT PLANNER</text>
             </svg>
           </div>
         </div>
@@ -188,17 +188,17 @@ const { open: openContactModal } = useContactModal()
         <div class="track-panel panel-intro">
           <div class="panel-intro__content">
             <h1 class="hero-huge__subtitle">
-              Construir o remodelar debería devolverte la ilusión,<br/>
-              <strong>No quitarte la tranquilidad.</strong>
+              Organizar tu evento debería ser una celebración inolvidable,<br/>
+              <strong>No una pesadilla de 7 proveedores.</strong>
             </h1>
             <p class="hero-huge__desc">
-              Con la metodología Línea Viva 360, un solo equipo planifica, coordina y<br/>
-              responde por todo tu proyecto desde la primera idea hasta la entrega final.
+              Con el Método de Sincronización Operativa 360° de Haz Event Planner, un solo equipo planifica, coordina y<br/>
+              responde por todo tu evento desde la primera idea hasta la fiesta final.
             </p>
 
             <div class="hero-huge__cta">
               <button class="btn btn--primary" @click="openContactModal">
-                <span>INICIAR MI PROYECTO</span>
+                <span>PLANIFICAR MI EVENTO</span>
               </button>
             </div>
           </div>

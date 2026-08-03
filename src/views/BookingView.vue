@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { getStoredFbParams } from '@/utils/fbclid'
 
 const router = useRouter()
 const iframeHeight = ref(1100)
@@ -9,13 +10,27 @@ const BASE_URL = 'https://api.leadconnectorhq.com/widget/booking/lKUymQr6CmOu5x6
 
 const calendarUrl = computed(() => {
   try {
-    const stored = localStorage.getItem('os_contact')
-    if (!stored) return BASE_URL
-    const { nombre, email, phone } = JSON.parse(stored)
     const params = new URLSearchParams()
-    if (nombre) params.set('firstName', nombre)
-    if (email) params.set('email', email)
-    if (phone) params.set('phone', phone)
+
+    const stored = localStorage.getItem('os_contact')
+    if (stored) {
+      const { nombre, email, phone } = JSON.parse(stored)
+      if (nombre) params.set('firstName', nombre)
+      if (email) params.set('email', email)
+      if (phone) params.set('phone', phone)
+    }
+
+    const fb = getStoredFbParams()
+    if (fb.fbclid) params.set('fbclid', fb.fbclid)
+    if (fb.fbc) params.set('fbc', fb.fbc)
+    if (fb.fbp) params.set('fbp', fb.fbp)
+    if (fb.utm_source) params.set('utm_source', fb.utm_source)
+    if (fb.utm_medium) params.set('utm_medium', fb.utm_medium)
+    if (fb.utm_campaign) params.set('utm_campaign', fb.utm_campaign)
+    if (fb.utm_content) params.set('utm_content', fb.utm_content)
+    if (fb.utm_term) params.set('utm_term', fb.utm_term)
+    if (fb.utm_id) params.set('utm_id', fb.utm_id)
+
     const qs = params.toString()
     return qs ? `${BASE_URL}?${qs}` : BASE_URL
   } catch {

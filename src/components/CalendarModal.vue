@@ -485,29 +485,29 @@ watch(() => props.open, (v) => {
   align-items: center;
   gap: 0.85rem;
   padding: 0.9rem 1.15rem;
-  border: 1.5px solid rgba(214, 194, 139, 0.25);
+  border: 1.5px solid rgba(229, 193, 88, 0.25);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: #212621;
+  background: colors.$HAZ-SURFACE-LIGHT;
 
   &:hover { 
     border-color: colors.$S2M-GOLD; 
-    background: #2A312A; 
+    background: rgba(229, 193, 88, 0.08); 
     transform: translateY(-1px);
   }
 
   &.selected {
     border-color: colors.$S2M-GOLD;
-    background: rgba(214, 194, 139, 0.15);
-    box-shadow: 0 0 15px rgba(214, 194, 139, 0.2);
+    background: rgba(229, 193, 88, 0.16);
+    box-shadow: 0 0 20px rgba(229, 193, 88, 0.25);
   }
 
   &__radio {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 2px solid rgba(214, 194, 139, 0.4);
+    border: 2px solid rgba(229, 193, 88, 0.4);
     flex-shrink: 0;
     position: relative;
     transition: all 0.2s ease;

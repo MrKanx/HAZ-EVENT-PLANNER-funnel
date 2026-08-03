@@ -35,7 +35,7 @@ const testimonials = [
   {
     id: 2,
     name: 'Johanna Quezada',
-    quote: 'Teníamos una desorganización total en nuestros cuatros restaurantes, al momento que llegó Bakano, todo cambió',
+    quote: 'Teníamos una desorganización total en nuestros eventos, al momento que llegó Haz Event Planner, todo cambió',
     image: imgJohanna,
     videoUrl: 'https://www.instagram.com/p/DMtdBuMup4k',
   },
