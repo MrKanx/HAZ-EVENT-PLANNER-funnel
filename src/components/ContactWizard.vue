@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { getStoredFbParams } from '@/utils/fbclid'
+import { getLeadAttributionPayload, trackMetaPixelEvent } from '@/utils/fbclid'
 
 // ── Webhooks ─────────────────────────────────────────────────────────────────
 const WH_CONTACT =
@@ -139,15 +139,20 @@ async function submitS1() {
         country: countryName,
         etiquetas: 'web-lead-haz',
         tags: 'web-lead-haz',
-        source: 'haz-event-planner-web',
         event_id: regEventId,
-        ...getStoredFbParams(),
+        ...getLeadAttributionPayload(),
       }),
     })
-    ;(window as any).fbq?.('track', 'CompleteRegistration',
-      { content_name: 'contacto-web-haz', value: 1, currency: 'USD' },
-      { eventID: regEventId },
-    )
+    trackMetaPixelEvent('CompleteRegistration', {
+      content_name: 'contacto-web-haz',
+      value: 1,
+      currency: 'USD',
+    }, regEventId, {
+      email: s1.value.email.trim(),
+      phone,
+      firstName: s1.value.firstName.trim(),
+      lastName: s1.value.lastName.trim(),
+    })
     dir.value = 'fwd'
     step.value = 2
   } catch {
@@ -184,7 +189,6 @@ async function submitS2() {
           companyName: s1.value.company.trim(),
           pais: countryName,
           country: countryName,
-          source: 'haz-event-planner-web',
           '1. ¿Tipo de Evento?': s2.value.projectType,
           '2. ¿Locación?': s2.value.budget,
           '3. ¿Perfil/Enfoque?': s2.value.objective,
@@ -195,7 +199,7 @@ async function submitS2() {
           notas: notes,
           nota: notes,
           notes,
-          ...getStoredFbParams(),
+          ...getLeadAttributionPayload(),
         }),
       })
     }

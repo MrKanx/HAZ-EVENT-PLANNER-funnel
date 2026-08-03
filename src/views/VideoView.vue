@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import CalendarModal from '@/components/CalendarModal.vue'
 import { trackStage, generateEventId } from '@/utils/ghl'
 import { useContactStore } from '@/stores/contact'
+import { getLeadAttributionPayload, trackMetaPixelEvent } from '@/utils/fbclid'
 
 const contactStore = useContactStore()
 const calendarOpen = ref(false)
@@ -37,6 +38,7 @@ const submitCapture = async () => {
 
   const c = contactStore.get()
   const leadEventId = generateEventId('lead_video')
+  const attribution = getLeadAttributionPayload()
   trackStage('lead_capturado', {
     nombre: c.nombre,
     apellido: c.apellido,
@@ -44,8 +46,18 @@ const submitCapture = async () => {
     telefono: c.telefono,
     phone: c.telefono,
     event_id: leadEventId,
+    ...attribution,
   })
-  ;(window as any).fbq?.('track', 'Lead', { content_name: 'video-gate' }, { eventID: leadEventId })
+  trackMetaPixelEvent('Lead', {
+    content_name: 'video-gate',
+    value: 1,
+    currency: 'USD',
+  }, leadEventId, {
+    email: c.email,
+    phone: c.telefono,
+    firstName: c.nombre,
+    lastName: c.apellido,
+  })
   
   await new Promise(r => setTimeout(r, 600))
   captureSubmitting.value = false

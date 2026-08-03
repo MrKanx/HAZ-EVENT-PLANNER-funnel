@@ -2,7 +2,7 @@
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { parsePhoneNumberFromString, getCountries, getCountryCallingCode, AsYouType } from 'libphonenumber-js'
 import { useRouter } from 'vue-router'
-import { getStoredFbParams } from '@/utils/fbclid'
+import { getLeadAttributionPayload, trackMetaPixelEvent } from '@/utils/fbclid'
 const router = useRouter()
 
 const props = defineProps<{ open: boolean }>()
@@ -228,10 +228,9 @@ const handleSubmit = async () => {
     nota: notesText,
     notes: notesText,
     pageDuration: pageDur,
-    source: 'HAZ-EVENT-PLANNER-web',
     timestamp: new Date().toISOString(),
     event_id: leadEventId,
-    ...getStoredFbParams(),
+    ...getLeadAttributionPayload(),
   }
 
   console.info('[HAZ EVENT PLANNER Registro]', payload)
@@ -246,10 +245,17 @@ const handleSubmit = async () => {
     body: JSON.stringify(payload),
   }).catch(() => {})
 
-  ;(window as any).fbq?.('track', 'Lead',
-    { content_name: 'registro-inicial' },
-    { eventID: leadEventId }
-  )
+  trackMetaPixelEvent('Lead', {
+    content_name: 'registro-inicial',
+    content_category: 'Event Planning',
+    value: 1,
+    currency: 'USD',
+  }, leadEventId, {
+    email: form.value.email.trim(),
+    phone: parsedPhoneE164.value,
+    firstName: form.value.nombre.trim(),
+    lastName: form.value.apellido.trim(),
+  })
 
   localStorage.setItem('os_contact', JSON.stringify({
     nombre: form.value.nombre.trim(),
@@ -261,10 +267,15 @@ const handleSubmit = async () => {
     timestamp: Date.now(),
   }))
 
-  ;(window as any).fbq?.('track', 'CompleteRegistration', {
+  trackMetaPixelEvent('CompleteRegistration', {
     content_name: 'registro-inicial',
     value: 1,
     currency: 'USD',
+  }, undefined, {
+    email: form.value.email.trim(),
+    phone: parsedPhoneE164.value,
+    firstName: form.value.nombre.trim(),
+    lastName: form.value.apellido.trim(),
   })
 
   submitting.value = false

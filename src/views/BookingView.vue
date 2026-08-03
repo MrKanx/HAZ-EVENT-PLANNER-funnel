@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { getStoredFbParams } from '@/utils/fbclid'
+import { getLeadAttributionPayload, trackMetaPixelEvent } from '@/utils/fbclid'
 
 const router = useRouter()
 const iframeHeight = ref(1100)
@@ -12,24 +12,25 @@ const calendarUrl = computed(() => {
   try {
     const params = new URLSearchParams()
 
+    let userObj: any = {}
     const stored = localStorage.getItem('os_contact')
     if (stored) {
-      const { nombre, email, phone } = JSON.parse(stored)
-      if (nombre) params.set('firstName', nombre)
-      if (email) params.set('email', email)
-      if (phone) params.set('phone', phone)
+      userObj = JSON.parse(stored) || {}
+      if (userObj.nombre) params.set('firstName', userObj.nombre)
+      if (userObj.email) params.set('email', userObj.email)
+      if (userObj.phone || userObj.telefono) params.set('phone', userObj.phone || userObj.telefono)
     }
 
-    const fb = getStoredFbParams()
-    if (fb.fbclid) params.set('fbclid', fb.fbclid)
-    if (fb.fbc) params.set('fbc', fb.fbc)
-    if (fb.fbp) params.set('fbp', fb.fbp)
-    if (fb.utm_source) params.set('utm_source', fb.utm_source)
-    if (fb.utm_medium) params.set('utm_medium', fb.utm_medium)
-    if (fb.utm_campaign) params.set('utm_campaign', fb.utm_campaign)
-    if (fb.utm_content) params.set('utm_content', fb.utm_content)
-    if (fb.utm_term) params.set('utm_term', fb.utm_term)
-    if (fb.utm_id) params.set('utm_id', fb.utm_id)
+    const attribution = getLeadAttributionPayload()
+    if (attribution.fbclid) params.set('fbclid', attribution.fbclid)
+    if (attribution.fbc) params.set('fbc', attribution.fbc)
+    if (attribution.fbp) params.set('fbp', attribution.fbp)
+    if (attribution.utm_source) params.set('utm_source', attribution.utm_source)
+    if (attribution.utm_medium) params.set('utm_medium', attribution.utm_medium)
+    if (attribution.utm_campaign) params.set('utm_campaign', attribution.utm_campaign)
+    if (attribution.utm_content) params.set('utm_content', attribution.utm_content)
+    if (attribution.utm_term) params.set('utm_term', attribution.utm_term)
+    if (attribution.utm_id) params.set('utm_id', attribution.utm_id)
 
     const qs = params.toString()
     return qs ? `${BASE_URL}?${qs}` : BASE_URL
@@ -41,11 +42,34 @@ const calendarUrl = computed(() => {
 const onMessage = (event: MessageEvent) => {
   if (Array.isArray(event.data) && event.data[0] === 'msgsndr-booking-complete') {
     localStorage.setItem('os_booked_at', String(Date.now()))
-    ;(window as any).fbq?.('track', 'CompleteRegistration', {
+    let c: any = {}
+    try {
+      const stored = localStorage.getItem('os_contact')
+      if (stored) c = JSON.parse(stored)
+    } catch { /* ignorar */ }
+
+    trackMetaPixelEvent('Schedule', {
       content_name: 'cita-agendada',
       value: 1,
       currency: 'USD',
+    }, undefined, {
+      email: c.email || '',
+      phone: c.telefono || c.phone || '',
+      firstName: c.nombre || '',
+      lastName: c.apellido || '',
     })
+
+    trackMetaPixelEvent('CompleteRegistration', {
+      content_name: 'cita-agendada',
+      value: 1,
+      currency: 'USD',
+    }, undefined, {
+      email: c.email || '',
+      phone: c.telefono || c.phone || '',
+      firstName: c.nombre || '',
+      lastName: c.apellido || '',
+    })
+
     router.push('/cita-confirmada')
   }
   if (event.data?.type === 'booking-app' && typeof event.data.height === 'number') {

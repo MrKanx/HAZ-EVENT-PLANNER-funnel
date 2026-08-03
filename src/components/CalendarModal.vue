@@ -3,7 +3,7 @@ import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { trackStage, generateEventId } from '@/utils/ghl'
 import { useContactStore } from '@/stores/contact'
-import { getStoredFbParams } from '@/utils/fbclid'
+import { getLeadAttributionPayload, trackMetaPixelEvent } from '@/utils/fbclid'
 
 const props = defineProps<{ open: boolean }>()
 const emit = defineEmits<{ (e: 'close'): void }>()
@@ -101,9 +101,8 @@ ${califica ? '✅ CALIFICA — Busca evento blindado 360°' : '❌ NO CALIFICA �
     notes: notasConTiempo,
     pageDuration: String(pageDuration),
     event_id: scheduleEventId,
-    ...getStoredFbParams(),
+    ...getLeadAttributionPayload(),
   }
-
 
   trackStage('cualificacion_completada', payload)
 
@@ -117,21 +116,32 @@ ${califica ? '✅ CALIFICA — Busca evento blindado 360°' : '❌ NO CALIFICA �
     body: JSON.stringify(payload),
   }).catch(() => {})
 
-  ;(window as any).fbq?.('track', 'CompleteRegistration',
-    {
-      content_name: 'cualificacion-step2',
-      status: califica ? 'califica' : 'no-califica',
-      value: 1,
-      currency: 'USD',
-    },
-    { eventID: scheduleEventId }
-  )
+  trackMetaPixelEvent('CompleteRegistration', {
+    content_name: 'cualificacion-step2',
+    status: califica ? 'califica' : 'no-califica',
+    value: 1,
+    currency: 'USD',
+  }, scheduleEventId, {
+    email: (contact as any).email || '',
+    phone: (contact as any).telefono || '',
+    firstName: (contact as any).nombre || '',
+    lastName: (contact as any).apellido || '',
+  })
 
   submitting.value = false
   emit('close')
 
   if (califica) {
-    ;(window as any).fbq?.('track', 'Lead')
+    trackMetaPixelEvent('Lead', {
+      content_name: 'lead-calificado',
+      value: 1,
+      currency: 'USD',
+    }, undefined, {
+      email: (contact as any).email || '',
+      phone: (contact as any).telefono || '',
+      firstName: (contact as any).nombre || '',
+      lastName: (contact as any).apellido || '',
+    })
     router.push('/agendar')
   } else {
     if (!IS_DEV) localStorage.setItem('os_disq_at', String(Date.now()))
